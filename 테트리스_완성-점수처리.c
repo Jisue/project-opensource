@@ -425,9 +425,9 @@ void countScore(void)
 }
 /* 1~10까지 행의 열 전체가 1로되면 블록사라짐.
 	사라지면 array_down함수 실행 */
-void control(void)
+void Check_line(void)
 {
-	int i;
+	int block_num;
 	int x, y;
 	int z = 0;
 
@@ -437,16 +437,16 @@ void control(void)
 		//행기준으로 4번 반복
 		for (z = 0; z < 4; z++)
 		{
-			i = 0;
+			block_num = 0;
 			//1열부터 10열까지 증가
 			for (x = 1; x < 11; x++)
 			{
 				//행기준
 				if (board[y][x] == 1)
 				{
-					i++;
+					block_num++;
 					//1이 10개면 행 블록 삭제
-					if (i == 10)
+					if (block_num == 10)
 					{
 						for (x = 1; x < 11; x++)
 						{
@@ -535,7 +535,7 @@ void moveBlock(void)
 				{
 					ww = 1;
 					boardConginition(n, 0, 0);//보드 벽돌 배열 1추가
-					control();
+					Check_line();
 					break;
 				}
 				removeBlock(n, 0, 1);  //board배열 +1행 
