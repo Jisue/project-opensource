@@ -459,9 +459,9 @@ void Check_line(void)
 	}
 }
 
-int gameOver(int rotation)
+int Game_over(int block)
 {
-	if (detect(rotation, 0, 0))
+	if (detect(block, 0, 0))
 		return 5; //∞‘¿” ≥°
 	else
 		return 0;
@@ -504,7 +504,7 @@ void moveBlock(void)
 			getchar();
 			exit(1);
 		}
-		if (gameOver(n))
+		if (Game_over(n))
 			break;
 
 
