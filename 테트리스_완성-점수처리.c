@@ -467,7 +467,7 @@ int Game_over(int block)
 		return 0;
 }
 
-int gameWin(void)
+int Game_win(void)
 {
 	if (level == 10)
 		return 1; //°ÔÀÓ½Â
@@ -497,7 +497,7 @@ void moveBlock(void)
 		n = n * 4;
 		n = 6;
 
-		if (gameWin())
+		if (Game_win())
 		{
 			setCursor(35, 20);
 			printf("GAME WIN");
