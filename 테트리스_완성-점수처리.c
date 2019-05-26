@@ -309,7 +309,7 @@ void showBlock(int rotation)
 			for (x = 0; x < 4; x++)
 			{
 				setCursor(cursor.X + (x * 2), cursor.Y + y);
-				if (block_array[rotation][y][x] == 1)
+				if (block[rotation][y][x] == 1)
 					printf("■");
 			}
 		}
@@ -334,7 +334,7 @@ void removeBlock(int rotation, int move1, int move2)
 			for (x = 0; x < 4; x++)
 			{
 				setCursor(cursor.X + (x * 2), cursor.Y + y);
-				if (block_array[rotation][y][x] == 1)
+				if (block[rotation][y][x] == 1)
 					printf(" ");
 			}
 		}
@@ -361,7 +361,7 @@ void boardConginition(int n, int move1, int move2)
 	{
 		for (x = 0; x < 4; x++)
 		{
-			if (block_array[n][y][x] == 1)
+			if (block[n][y][x] == 1)
 			{
 				board[arrY + y][arrX + x] = 1;
 			}
@@ -425,9 +425,9 @@ void countScore(void)
 }
 /* 1~10까지 행의 열 전체가 1로되면 블록사라짐.
 	사라지면 array_down함수 실행 */
-void Check_line(void)
+void control(void)
 {
-	int block_num;
+	int i;
 	int x, y;
 	int z = 0;
 
@@ -437,16 +437,16 @@ void Check_line(void)
 		//행기준으로 4번 반복
 		for (z = 0; z < 4; z++)
 		{
-			block_num = 0;
+			i = 0;
 			//1열부터 10열까지 증가
 			for (x = 1; x < 11; x++)
 			{
 				//행기준
 				if (board[y][x] == 1)
 				{
-					block_num++;
+					i++;
 					//1이 10개면 행 블록 삭제
-					if (block_num == 10)
+					if (i == 10)
 					{
 						for (x = 1; x < 11; x++)
 						{
@@ -535,7 +535,7 @@ void moveBlock(void)
 				{
 					ww = 1;
 					boardConginition(n, 0, 0);//보드 벽돌 배열 1추가
-					Check_line();
+					control();
 					break;
 				}
 				removeBlock(n, 0, 1);  //board배열 +1행 
