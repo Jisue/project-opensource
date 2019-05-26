@@ -20,12 +20,12 @@
 #define DOWN 80
 #define SPACE 32
 
-int static score=0; //게임점수
-int static level=1; //게임레벨
-int static speed=180;
-int curX,curY; //콘솔커서
-int board[BOARD_HEIGHT+1][BOARD_WIDTH+2]={0,};
-int block[][4][4]={
+int static score = 0; //게임점수
+int static level = 1; //게임레벨
+int static speed = 180;
+int curX, curY; //콘솔커서
+int board[BOARD_HEIGHT + 1][BOARD_WIDTH + 2] = { 0, };
+int block_array[][4][4] = {
 	/*■
 	  ■■■*/
 	{
@@ -48,244 +48,244 @@ int block[][4][4]={
 		{1,0,0,0},
 		{1,0,0,0},
 		{0,0,0,0}},
-	    /* 두 번째 블록 
-             ■
-         ■■■     */
-    {
-        {0, 0, 0, 0},
-        {0, 0, 1, 0},
-        {1, 1, 1, 0},
-        {0, 0, 0, 0} },   
-    {
-        {0, 1, 1, 0},
-        {0, 0, 1, 0},
-        {0, 0, 1, 0},
-        {0, 0, 0, 0} },    
-    {
-        {1, 1, 1, 0},
-        {1, 0, 0, 0},
-        {0, 0, 0, 0},
-        {0, 0, 0, 0} },    
-    {
-        {1, 0, 0, 0},
-        {1, 0, 0, 0},
-        {1, 1, 0, 0},
-        {0, 0, 0, 0} },
+		/* 두 번째 블록
+			 ■
+		 ■■■     */
+	{
+		{0, 0, 0, 0},
+		{0, 0, 1, 0},
+		{1, 1, 1, 0},
+		{0, 0, 0, 0} },
+	{
+		{0, 1, 1, 0},
+		{0, 0, 1, 0},
+		{0, 0, 1, 0},
+		{0, 0, 0, 0} },
+	{
+		{1, 1, 1, 0},
+		{1, 0, 0, 0},
+		{0, 0, 0, 0},
+		{0, 0, 0, 0} },
+	{
+		{1, 0, 0, 0},
+		{1, 0, 0, 0},
+		{1, 1, 0, 0},
+		{0, 0, 0, 0} },
 
-    /* 세 번째 블록 
-            ■
-          ■■■    */
-    {
-        {0, 0, 0, 0},
-        {0, 1, 0, 0},
-        {1, 1, 1, 0},
-        {0, 0, 0, 0} },   
-    {
-        {0, 0, 0, 0},
-        {0, 1, 0, 0},
-        {1, 1, 0, 0},
-        {0, 1, 0, 0} },    
-    {
-        {0, 0, 0, 0},
-        {0, 0, 0, 0},
-        {1, 1, 1, 0},
-        {0, 1, 0, 0} },    
-    {
-        {0, 0, 0, 0},
-        {0, 1, 0, 0},
-        {0, 1, 1, 0},
-        {0, 1, 0, 0} },
+		/* 세 번째 블록
+				■
+			  ■■■    */
+		{
+			{0, 0, 0, 0},
+			{0, 1, 0, 0},
+			{1, 1, 1, 0},
+			{0, 0, 0, 0} },
+		{
+			{0, 0, 0, 0},
+			{0, 1, 0, 0},
+			{1, 1, 0, 0},
+			{0, 1, 0, 0} },
+		{
+			{0, 0, 0, 0},
+			{0, 0, 0, 0},
+			{1, 1, 1, 0},
+			{0, 1, 0, 0} },
+		{
+			{0, 0, 0, 0},
+			{0, 1, 0, 0},
+			{0, 1, 1, 0},
+			{0, 1, 0, 0} },
 
-    /* 네 번째 블록 
-      
-          ■■■■   */
-    {
-        {0, 1, 0, 0},
-        {0, 1, 0, 0},
-        {0, 1, 0, 0},
-        {0, 1, 0, 0} },   
-    {
-        {0, 0, 0, 0},
-        {0, 0, 0, 0},
-        {1, 1, 1, 1},
-        {0, 0, 0, 0} },    
-    {
-        {0, 1, 0, 0},
-        {0, 1, 0, 0},
-        {0, 1, 0, 0},
-        {0, 1, 0, 0} },    
-    {
-        {0, 0, 0, 0},
-        {0, 0, 0, 0},
-        {1, 1, 1, 1},
-        {0, 0, 0, 0} },
- 
-    /* 다섯 번째 블록 
-      
-          ■■
-          ■■      */
-    {
-        {1, 1, 0, 0},
-        {1, 1, 0, 0},
-        {0, 0, 0, 0},
-        {0, 0, 0, 0} },   
-    {
-        {1, 1, 0, 0},
-        {1, 1, 0, 0},
-        {0, 0, 0, 0},
-        {0, 0, 0, 0} },    
-    {
-        {1, 1, 0, 0},
-        {1, 1, 0, 0},
-        {0, 0, 0, 0},
-        {0, 0, 0, 0} },    
-    {
-        {1, 1, 0, 0},
-        {1, 1, 0, 0},
-        {0, 0, 0, 0},
-        {0, 0, 0, 0} },
+			/* 네 번째 블록
+
+				  ■■■■   */
+			{
+				{0, 1, 0, 0},
+				{0, 1, 0, 0},
+				{0, 1, 0, 0},
+				{0, 1, 0, 0} },
+			{
+				{0, 0, 0, 0},
+				{0, 0, 0, 0},
+				{1, 1, 1, 1},
+				{0, 0, 0, 0} },
+			{
+				{0, 1, 0, 0},
+				{0, 1, 0, 0},
+				{0, 1, 0, 0},
+				{0, 1, 0, 0} },
+			{
+				{0, 0, 0, 0},
+				{0, 0, 0, 0},
+				{1, 1, 1, 1},
+				{0, 0, 0, 0} },
+
+				/* 다섯 번째 블록
+
+					  ■■
+					  ■■      */
+				{
+					{1, 1, 0, 0},
+					{1, 1, 0, 0},
+					{0, 0, 0, 0},
+					{0, 0, 0, 0} },
+				{
+					{1, 1, 0, 0},
+					{1, 1, 0, 0},
+					{0, 0, 0, 0},
+					{0, 0, 0, 0} },
+				{
+					{1, 1, 0, 0},
+					{1, 1, 0, 0},
+					{0, 0, 0, 0},
+					{0, 0, 0, 0} },
+				{
+					{1, 1, 0, 0},
+					{1, 1, 0, 0},
+					{0, 0, 0, 0},
+					{0, 0, 0, 0} },
 
 
-    /* 여섯 번째 블록       
-            ■■
-          ■■      */
-    {
-        {0, 0, 0, 0},
-        {0, 1, 1, 0},
-        {1, 1, 0, 0},
-        {0, 0, 0, 0} },   
-    {
-        {0, 1, 0, 0},
-        {0, 1, 1, 0},
-        {0, 0, 1, 0},
-        {0, 0, 0, 0} },    
-    {
-        {0, 0, 0, 0},
-        {0, 1, 1, 0},
-        {1, 1, 0, 0},
-        {0, 0, 0, 0} },   
-    {
-        {0, 1, 0, 0},
-        {0, 1, 1, 0},
-        {0, 0, 1, 0},
-        {0, 0, 0, 0} },  
- 
-    /* 일곱 번째 블록 
-      
-          ■■
-            ■■    */
-    {
-        {0, 0, 0, 0},
-        {1, 1, 0, 0},
-        {0, 1, 1, 0},
-        {0, 0, 0, 0} },   
-    {
-        {0, 0, 1, 0},
-        {0, 1, 1, 0},
-        {0, 1, 0, 0},
-        {0, 0, 0, 0} }, 
-    {   
-        {0, 0, 0, 0},
-        {1, 1, 0, 0},
-        {0, 1, 1, 0},
-        {0, 0, 0, 0} },   
-    {
-        {0, 0, 1, 0},
-        {0, 1, 1, 0},
-        {0, 1, 0, 0},
-        {0, 0, 0, 0} },
+					/* 여섯 번째 블록
+							■■
+						  ■■      */
+					{
+						{0, 0, 0, 0},
+						{0, 1, 1, 0},
+						{1, 1, 0, 0},
+						{0, 0, 0, 0} },
+					{
+						{0, 1, 0, 0},
+						{0, 1, 1, 0},
+						{0, 0, 1, 0},
+						{0, 0, 0, 0} },
+					{
+						{0, 0, 0, 0},
+						{0, 1, 1, 0},
+						{1, 1, 0, 0},
+						{0, 0, 0, 0} },
+					{
+						{0, 1, 0, 0},
+						{0, 1, 1, 0},
+						{0, 0, 1, 0},
+						{0, 0, 0, 0} },
+
+						/* 일곱 번째 블록
+
+							  ■■
+								■■    */
+						{
+							{0, 0, 0, 0},
+							{1, 1, 0, 0},
+							{0, 1, 1, 0},
+							{0, 0, 0, 0} },
+						{
+							{0, 0, 1, 0},
+							{0, 1, 1, 0},
+							{0, 1, 0, 0},
+							{0, 0, 0, 0} },
+						{
+							{0, 0, 0, 0},
+							{1, 1, 0, 0},
+							{0, 1, 1, 0},
+							{0, 0, 0, 0} },
+						{
+							{0, 0, 1, 0},
+							{0, 1, 1, 0},
+							{0, 1, 0, 0},
+							{0, 0, 0, 0} },
 
 };
 void removeCursor(void)
 {
 	CONSOLE_CURSOR_INFO curInfo;
 	GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
-	curInfo.bVisible=0;
+	curInfo.bVisible = 0;
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
 }
 
 void setCursor(int x, int y)
 {
-	COORD pos={x,y};
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
+	COORD pos = { x,y };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 COORD getCursor(void)
 {
 	COORD cur;
 	CONSOLE_SCREEN_BUFFER_INFO curInfo;
 
-	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE),&curInfo);
-	cur.X=curInfo.dwCursorPosition.X;
-	cur.Y=curInfo.dwCursorPosition.Y;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
+	cur.X = curInfo.dwCursorPosition.X;
+	cur.Y = curInfo.dwCursorPosition.Y;
 	return cur;
 }
 //void showBlock(int rotation);
 
 void showBoard(void)
 {
-	int x,y;
-	
+	int x, y;
+
 	//중앙 보드 라인
-	for(x=1; x<=BOARD_WIDTH+1; x++)
+	for (x = 1; x <= BOARD_WIDTH + 1; x++)
 	{
-		board[BOARD_HEIGHT][x]=1; //board 배열 중앙 1인식
-		setCursor((BOARD_X)+x*2, BOARD_Y+BOARD_HEIGHT);  //콘솔좌표
+		board[BOARD_HEIGHT][x] = 1; //board 배열 중앙 1인식
+		setCursor((BOARD_X)+x * 2, BOARD_Y + BOARD_HEIGHT);  //콘솔좌표
 		printf("━");
 	}
 	//왼쪽 보드 라인
-	for(y=0; y<BOARD_HEIGHT+1; y++)
+	for (y = 0; y < BOARD_HEIGHT + 1; y++)
 	{
-		board[y][0]=1; //board 배열 왼쪽 1인식
-		setCursor(BOARD_X, BOARD_Y+y);
-		if(y==BOARD_HEIGHT)
+		board[y][0] = 1; //board 배열 왼쪽 1인식
+		setCursor(BOARD_X, BOARD_Y + y);
+		if (y == BOARD_HEIGHT)
 			printf("┗");
 		else
 			printf("┃");
 	}
 	//오른쪽 보드 라인
-	for(y=0; y<BOARD_HEIGHT+1; y++)
+	for (y = 0; y < BOARD_HEIGHT + 1; y++)
 	{
-		board[y][BOARD_WIDTH+1]=1; //board 배열 오른쪽 1인식
-		setCursor(BOARD_X+(BOARD_WIDTH+2)*2, BOARD_Y+y); 
-		if(y==BOARD_HEIGHT)
+		board[y][BOARD_WIDTH + 1] = 1; //board 배열 오른쪽 1인식
+		setCursor(BOARD_X + (BOARD_WIDTH + 2) * 2, BOARD_Y + y);
+		if (y == BOARD_HEIGHT)
 			printf("┛");
 		else
 			printf("┃");
 	}
-	
+
 	//모서리값 값 변경
-	board[20][0]=1;
-	board[20][11]=1;
+	board[20][0] = 1;
+	board[20][11] = 1;
 
 	puts(" ");
 }
 
-void initial(int x,int y)
+void initial(int x, int y)
 {
-	curX=x;
-	curY=y;
-	setCursor(x,y);
+	curX = x;
+	curY = y;
+	setCursor(x, y);
 }
 
 //removeBlock함수 작동전 벽인 or 아닌지확인
-int detect(int rotation,int move1,int move2)
+int detect(int rotation, int move1, int move2)
 {
-	int x,y;
-	int arrX,arrY; //배열좌표저장
-	COORD pos=getCursor();
+	int x, y;
+	int arrX, arrY; //배열좌표저장
+	COORD pos = getCursor();
 
-	arrX=pos.X+move1;
-	arrY=pos.Y+move2;
-	
-	arrX=(arrX/2)-2;
-	arrY=arrY-BOARD_Y;
+	arrX = pos.X + move1;
+	arrY = pos.Y + move2;
 
-		
-	for(y=0; y<4; y++)
+	arrX = (arrX / 2) - 2;
+	arrY = arrY - BOARD_Y;
+
+
+	for (y = 0; y < 4; y++)
 	{
-		for(x=0; x<4; x++)
+		for (x = 0; x < 4; x++)
 		{
-			if( (block[rotation][y][x]==1) && board[arrY+y][arrX+x]==1)
+			if ((block_array[rotation][y][x] == 1) && board[arrY + y][arrX + x] == 1)
 				return 1;  //보드와 벽돌 겹침
 		}
 	}
@@ -296,20 +296,20 @@ int detect(int rotation,int move1,int move2)
 //벽돌생성
 void showBlock(int rotation)
 {
-	int x,y;
-	COORD cursor=getCursor();
+	int x, y;
+	COORD cursor = getCursor();
 	int prove;
 	//int n=(rotation-1)%4;
-	prove=detect(rotation,0,0);
-	if(prove==0)
+	prove = detect(rotation, 0, 0);
+	if (prove == 0)
 	{
 		//콘솔창위치 설정, 배열값에서 1은 ■출력,0은 출력없음
-		for(y=0; y<4; y++)
+		for (y = 0; y < 4; y++)
 		{
-			for(x=0; x<4; x++)
+			for (x = 0; x < 4; x++)
 			{
-				setCursor(cursor.X + (x*2), cursor.Y+ y);
-				if(block[rotation][y][x]==1)
+				setCursor(cursor.X + (x * 2), cursor.Y + y);
+				if (block_array[rotation][y][x] == 1)
 					printf("■");
 			}
 		}
@@ -317,109 +317,109 @@ void showBlock(int rotation)
 	}
 }
 
-	
-void removeBlock(int rotation,int move1,int move2)
+
+void removeBlock(int rotation, int move1, int move2)
 {
 	int pr;
-	int x,y;
-	
-	COORD cursor=getCursor();
+	int x, y;
 
-	pr=detect(rotation,move1,move2);
-	
-	if(pr==0)
+	COORD cursor = getCursor();
+
+	pr = detect(rotation, move1, move2);
+
+	if (pr == 0)
 	{
-		for(y=0; y<4; y++)
+		for (y = 0; y < 4; y++)
 		{
-			for(x=0; x<4; x++)
+			for (x = 0; x < 4; x++)
 			{
-					setCursor(cursor.X+ (x*2), cursor.Y+y);
-					if(block[rotation][y][x]==1)
-						printf(" ");
+				setCursor(cursor.X + (x * 2), cursor.Y + y);
+				if (block_array[rotation][y][x] == 1)
+					printf(" ");
 			}
 		}
-		setCursor(cursor.X+move1, cursor.Y+move2);
+		setCursor(cursor.X + move1, cursor.Y + move2);
 	}
 }
 
 
 //블록 보드판에서 1인식
-void boardConginition(int n,int move1, int move2)
+void boardConginition(int n, int move1, int move2)
 {
-	COORD pos=getCursor();
-	
+	COORD pos = getCursor();
+
 	int arrX = pos.X + move1;  //콘솔좌표 열
 	int arrY = pos.Y + move2;  //콘솔좌표 행
-	int x,y;
+	int x, y;
 
 	/*커서위치정보->배열위치정보 변경*/
-	arrX=arrX/2-2; //콘솔좌표->배열 열 변환값
-	arrY=arrY-2;	 //콘솔좌표->배열 행 변환값
+	arrX = arrX / 2 - 2; //콘솔좌표->배열 열 변환값
+	arrY = arrY - 2;	 //콘솔좌표->배열 행 변환값
 
 	//보드판에서 블록 이동시 1인식
-	for(y=0; y<4; y++)
+	for (y = 0; y < 4; y++)
 	{
-		for(x=0; x<4; x++)
+		for (x = 0; x < 4; x++)
 		{
-			if(block[n][y][x]==1)
+			if (block_array[n][y][x] == 1)
 			{
-				board[arrY+y][arrX+x] =1;
+				board[arrY + y][arrX + x] = 1;
 			}
 		}
 	}
-	return ;
+	return;
 
 }
 
 /*배열,블록 옮김*/
 void array_down(int column)
 {
-	int y,x;
-	
+	int y, x;
+
 	/*board배열 값 행 다운*/
-	for(y=column; y>=0; y--)
+	for (y = column; y >= 0; y--)
 	{
-		for(x=1; x<=10; x++)
+		for (x = 1; x <= 10; x++)
 		{
-			board[y][x]=board[y-1][x];
+			board[y][x] = board[y - 1][x];
 		}
 	}
 	/*board배열 0행에 0삽입*/
-	for(x=1; x<=10; x++)
-		board[0][x]=0;
+	for (x = 1; x <= 10; x++)
+		board[0][x] = 0;
 
 	/*board배열 1값 전체 출력 */
-	for(y=1; y<=19; y++)
+	for (y = 1; y <= 19; y++)
 	{
-		for(x=1; x<=10; x++)
+		for (x = 1; x <= 10; x++)
 		{
-			setCursor((BOARD_X)+x*2+1, y+BOARD_Y);
-			if(board[y][x]==1)
+			setCursor((BOARD_X)+x * 2 + 1, y + BOARD_Y);
+			if (board[y][x] == 1)
 				printf("■");
 			else
 				printf("  ");
 		}
 	}
-		
+
 }
 //레벨 스코어 출력
 void scoreLevel(void)
 {
-	setCursor(40,3);
+	setCursor(40, 3);
 	printf("★레벨10 게임 클리어★");
-	setCursor(40,5);
-	printf("레벨:%d\n",level);
-	setCursor(40,7);
-	printf("점수:%d\n",score);
+	setCursor(40, 5);
+	printf("레벨:%d\n", level);
+	setCursor(40, 7);
+	printf("점수:%d\n", score);
 }
 //레벨 스코어 계산
 void countScore(void)
 {
-	score+=10;
-	if(score%30==0)
+	score += 10;
+	if (score % 30 == 0)
 	{
-		level+=1;
-		speed-=30;
+		level += 1;
+		speed -= 30;
 	}
 	scoreLevel();
 }
@@ -428,29 +428,29 @@ void countScore(void)
 void control(void)
 {
 	int i;
-	int x,y;
-	int z=0;
-	
+	int x, y;
+	int z = 0;
+
 	//19행부터 시작해서 1행까지 반복
-	for(y=19; y>=1; y--)
+	for (y = 19; y >= 1; y--)
 	{
 		//행기준으로 4번 반복
-		for(z=0; z<4; z++)
+		for (z = 0; z < 4; z++)
 		{
-			i=0;
+			i = 0;
 			//1열부터 10열까지 증가
-			for(x=1; x<11; x++)
+			for (x = 1; x < 11; x++)
 			{
 				//행기준
-				if(board[y][x]==1)
+				if (board[y][x] == 1)
 				{
 					i++;
 					//1이 10개면 행 블록 삭제
-					if(i==10)
+					if (i == 10)
 					{
-						for(x=1; x<11; x++)
+						for (x = 1; x < 11; x++)
 						{
-							setCursor((x+2)*2,y+2);
+							setCursor((x + 2) * 2, y + 2);
 							printf("  ");
 						}
 						//행 기준으로 블록 내리기
@@ -463,12 +463,12 @@ void control(void)
 		}
 	}
 
-	
+
 }
 
 int gameOver(int rotation)
 {
-	if(detect(rotation,0,0))
+	if (detect(rotation, 0, 0))
 		return 5; //게임 끝
 	else
 		return 0;
@@ -476,7 +476,7 @@ int gameOver(int rotation)
 
 int gameWin(void)
 {
-	if(level==10)
+	if (level == 10)
 		return 1; //게임승
 	else
 		return 0;
@@ -484,125 +484,125 @@ int gameWin(void)
 
 void moveBlock(void)
 {
-	
+
 	int n;
 	int kb;
 	int prove;
 	int winOver;//게임결과
 	srand(time(NULL));
-	
-	
+
+
 	/*게임 시작~끝*/
-	while(1)
+	while (1)
 	{
-		
-		initial(CBLOCK_X,CBLOCK_Y); //블록 생성 위치 좌표 
-		
-		n=(rand()%RAND)*4;//난수생성
-		n=rand()%RAND;
-		n=rand()%7;//블록 모양 결정
+
+		initial(CBLOCK_X, CBLOCK_Y); //블록 생성 위치 좌표 
+
+		n = (rand() % RAND) * 4;//난수생성
+		n = rand() % RAND;
+		n = rand() % 7;//블록 모양 결정
 		n = n * 4;
 		n = 6;
 
-		if(gameWin())
+		if (gameWin())
 		{
-			setCursor(35,20);
+			setCursor(35, 20);
 			printf("GAME WIN");
 			getchar();
 			exit(1);
 		}
-		if(gameOver(n))
+		if (gameOver(n))
 			break;
-				
-		
+
+
 		/*블록 한개 위~밑 이동*/
-		while(1)				
+		while (1)
 		{
-			int ww=0;
+			int ww = 0;
 			int var;
-			int k=0;
+			int k = 0;
 			int tmp;
 			/*블록 아래로 이동*/
-	
-			while(!_kbhit())
+
+			while (!_kbhit())
 			{
 				//블록 쇼
 				showBlock(n);
 				//딜레이 타임
-				Sleep(DELAY+speed);
+				Sleep(DELAY + speed);
 				//아래이동시 1있느지 확인
-				if(detect(n,0,1)==1)  
-				{	
-					ww=1;
-					boardConginition(n,0,0);//보드 벽돌 배열 1추가
+				if (detect(n, 0, 1) == 1)
+				{
+					ww = 1;
+					boardConginition(n, 0, 0);//보드 벽돌 배열 1추가
 					control();
 					break;
 				}
-				removeBlock(n,0,1);  //board배열 +1행 
+				removeBlock(n, 0, 1);  //board배열 +1행 
 			}
 			/*detect함수에서 배열값 1발견시 중지*/
-			if(ww==1)
+			if (ww == 1)
 				break;
-			
-			kb=_getch();
-			/*방향키*/
-			switch(kb)
-			{
-				case LEFT:
-					removeBlock(n,-2,0);
-					showBlock(n);
-					break;
-				case RIGHT:
-					removeBlock(n,2,0);
-					showBlock(n);
-					break;
-				case UP:
-					
-					// 첫수를구한다.
-					k = n / 4;
-					k *= 4;
-				
-					// 다음수가 끝수이하인가?
-					if((n+1) <= (k+3))
-					{
-						k = n + 1;
-					}
 
-					prove=detect(k,0,0);
-					if(prove==0)
+			kb = _getch();
+			/*방향키*/
+			switch (kb)
+			{
+			case LEFT:
+				removeBlock(n, -2, 0);
+				showBlock(n);
+				break;
+			case RIGHT:
+				removeBlock(n, 2, 0);
+				showBlock(n);
+				break;
+			case UP:
+
+				// 첫수를구한다.
+				k = n / 4;
+				k *= 4;
+
+				// 다음수가 끝수이하인가?
+				if ((n + 1) <= (k + 3))
+				{
+					k = n + 1;
+				}
+
+				prove = detect(k, 0, 0);
+				if (prove == 0)
+				{
+					removeBlock(n, 0, 0);
+					n = k;
+					showBlock(n);
+					break;
+				}
+				break;
+			case DOWN:
+				removeBlock(n, 0, 2);
+				//showBlock(n);
+				break;
+			case SPACE:
+				while (1)
+				{
+					removeBlock(n, 0, 1);
+					if (detect(n, 0, 1) == 1)
 					{
-						removeBlock(n,0,0);
-						n = k;
 						showBlock(n);
+						boardConginition(n, 0, 0);
 						break;
 					}
-					break;
-				case DOWN:
-					removeBlock(n,0,2);
-					//showBlock(n);
-					break;
-				case SPACE:
-					while(1)
-					{
-						removeBlock(n,0,1);
-						if(detect(n,0,1)==1 )
-						{
-							showBlock(n);
-							boardConginition(n,0,0);
-							break;
-						}
-						
-					}
+
+				}
 
 
 			}
-			
+
 		}
-		
+
 	}
-	
-	setCursor(35,20);
-		printf("GAME OVER");
+
+	setCursor(35, 20);
+	printf("GAME OVER");
 }
 
 
@@ -612,12 +612,12 @@ int main()
 {
 	removeCursor(); //커서 깜박이 제거
 
-	setCursor(2,1); //보드표시 시작위치 설정
+	setCursor(2, 1); //보드표시 시작위치 설정
 	showBoard(); //보드 출력
 	scoreLevel();
-	
+
 	moveBlock(); //보드 출력 움직임
-	
+
 	getchar();
 
 }
