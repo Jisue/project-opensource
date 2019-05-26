@@ -605,13 +605,8 @@ void Run(void)
 int main()
 {
 	removeCursor(); //커서 깜박이 제거
-
-	setCursor(2, 1); //보드표시 시작위치 설정
 	showBoard(); //보드 출력
 	scoreLevel();
-
 	Run(); //보드 출력 움직임
-
 	getchar();
-
 }
