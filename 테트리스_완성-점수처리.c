@@ -1,3 +1,5 @@
+
+
 #include <stdio.h>
 #include <windows.h>
 #include <stdlib.h> //
@@ -475,13 +477,13 @@ int Game_win(void)
 		return 0;
 }
 
-void moveBlock(void)
+void Run(void)
 {
 
-	int n;
-	int kb;
-	int prove;
-	int winOver;//게임결과
+	int block;
+	int key;
+	int collision_rotation;
+
 	srand(time(NULL));
 
 
@@ -491,11 +493,11 @@ void moveBlock(void)
 
 		initial(CBLOCK_X, CBLOCK_Y); //블록 생성 위치 좌표 
 
-		n = (rand() % RAND) * 4;//난수생성
-		n = rand() % RAND;
-		n = rand() % 7;//블록 모양 결정
-		n = n * 4;
-		n = 6;
+		block = (rand() % RAND) * 4;//난수생성
+		block = rand() % RAND;
+		block = rand() % 7;//블록 모양 결정
+		block = block * 4;
+		block = 6;
 
 		if (Game_win())
 		{
@@ -504,84 +506,83 @@ void moveBlock(void)
 			getchar();
 			exit(1);
 		}
-		if (Game_over(n))
+		if (Game_over(block))
 			break;
 
 
 		/*블록 한개 위~밑 이동*/
 		while (1)
 		{
-			int ww = 0;
-			int var;
-			int k = 0;
-			int tmp;
+			int last_line = 0;
+			int block_rotation = 0;
+
 			/*블록 아래로 이동*/
 
 			while (!_kbhit())
 			{
 				//블록 쇼
-				showBlock(n);
+				showBlock(block);
 				//딜레이 타임
 				Sleep(DELAY + speed);
 				//아래이동시 1있느지 확인
-				if (detect(n, 0, 1) == 1)
+				if (detect(block, 0, 1) == 1)
 				{
-					ww = 1;
-					boardConginition(n, 0, 0);//보드 벽돌 배열 1추가
+					last_line = 1;
+					boardConginition(block, 0, 0);//보드 벽돌 배열 1추가
 					Check_line();
 					break;
 				}
-				removeBlock(n, 0, 1);  //board배열 +1행 
+				removeBlock(block, 0, 1);  //board배열 +1행 
 			}
 			/*detect함수에서 배열값 1발견시 중지*/
-			if (ww == 1)
+			if (last_line == 1)
 				break;
 
-			kb = _getch();
+			key = _getch();
 			/*방향키*/
-			switch (kb)
+			switch (key)
 			{
 			case LEFT:
-				removeBlock(n, -2, 0);
-				showBlock(n);
+				removeBlock(block, -2, 0);
+				showBlock(block);
 				break;
 			case RIGHT:
-				removeBlock(n, 2, 0);
-				showBlock(n);
+				removeBlock(block, 2, 0);
+				showBlock(block);
 				break;
 			case UP:
 
 				// 첫수를구한다.
-				k = n / 4;
-				k *= 4;
+				block_rotation = block / 4;
+				block_rotation *= 4;
 
 				// 다음수가 끝수이하인가?
-				if ((n + 1) <= (k + 3))
+				if ((block + 1) <= (block_rotation + 3))
 				{
-					k = n + 1;
+					block_rotation = block + 1;
 				}
 
-				prove = detect(k, 0, 0);
-				if (prove == 0)
+				collision_rotation = detect(block_rotation, 0, 0);
+				if (collision_rotation == 0)
 				{
-					removeBlock(n, 0, 0);
-					n = k;
-					showBlock(n);
+					removeBlock(block, 0, 0);
+					block = block_rotation;
+					showBlock(block);
 					break;
 				}
 				break;
 			case DOWN:
-				removeBlock(n, 0, 2);
+				removeBlock(block, 0, 2);
 				//showBlock(n);
 				break;
 			case SPACE:
 				while (1)
 				{
-					removeBlock(n, 0, 1);
-					if (detect(n, 0, 1) == 1)
+					removeBlock(block, 0, 1);
+					if (detect(block, 0, 1) == 1)
 					{
-						showBlock(n);
-						boardConginition(n, 0, 0);
+						showBlock(block);
+						boardConginition(block, 0, 0);
 						break;
 					}
 
@@ -609,7 +610,7 @@ int main()
 	showBoard(); //보드 출력
 	scoreLevel();
 
-	moveBlock(); //보드 출력 움직임
+	Run(); //보드 출력 움직임
 
 	getchar();
 
