@@ -486,11 +486,9 @@ void Run(void)
 
 	srand(time(NULL));
 
-
 	/*게임 시작~끝*/
 	while (1)
 	{
-
 		initial(CBLOCK_X, CBLOCK_Y); //블록 생성 위치 좌표 
 
 		block = (rand() % RAND) * 4;//난수생성
@@ -507,8 +505,12 @@ void Run(void)
 			exit(1);
 		}
 		if (Game_over(block))
-			break;
-
+		{
+			setCursor(35, 20);
+			printf("GAME OVER");
+			getchar();
+			exit(1);
+		}
 
 		/*블록 한개 위~밑 이동*/
 		while (1)
@@ -517,7 +519,6 @@ void Run(void)
 			int block_rotation = 0;
 
 			/*블록 아래로 이동*/
-
 			while (!_kbhit())
 			{
 				//블록 쇼
@@ -536,7 +537,9 @@ void Run(void)
 			}
 			/*detect함수에서 배열값 1발견시 중지*/
 			if (last_line == 1)
+			{
 				break;
+			}
 
 			key = _getch();
 			/*방향키*/
@@ -551,7 +554,6 @@ void Run(void)
 				showBlock(block);
 				break;
 			case UP:
-
 				// 첫수를구한다.
 				block_rotation = block / 4;
 				block_rotation *= 4;
@@ -573,7 +575,7 @@ void Run(void)
 				break;
 			case DOWN:
 				removeBlock(block, 0, 2);
-				//showBlock(n);
+				showBlock(block);
 				break;
 			case SPACE:
 				while (1)
@@ -585,22 +587,11 @@ void Run(void)
 						boardConginition(block, 0, 0);
 						break;
 					}
-
 				}
-
-
 			}
-
 		}
-
 	}
-
-	setCursor(35, 20);
-	printf("GAME OVER");
 }
-
-
-
 
 int main()
 {
