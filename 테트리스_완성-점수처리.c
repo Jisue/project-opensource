@@ -476,9 +476,13 @@ int Game_over(int block)
 int Game_win(void)
 {
 	if (level == 10)
+	{
 		return 1; //°ÔÀÓ½Â
+	}
 	else
+	{
 		return 0;
+	}
 }
 
 void Run(void)
