@@ -464,9 +464,13 @@ void Check_line(void)
 int Game_over(int block)
 {
 	if (detect(block, 0, 0))
+	{
 		return 5; //∞‘¿” ≥°
+	}
 	else
+	{
 		return 0;
+	}
 }
 
 int Game_win(void)
