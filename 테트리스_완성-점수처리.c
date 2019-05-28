@@ -405,7 +405,7 @@ void Array_down(int column)
 
 }
 //레벨 스코어 출력
-void scoreLevel(void)
+void Print_scorelevel(void)
 {
 	setCursor(40, 3);
 	printf("★레벨10 게임 클리어★");
@@ -423,7 +423,7 @@ void countScore(void)
 		level += 1;
 		speed -= 30;
 	}
-	scoreLevel();
+	Print_scorelevel();
 }
 /* 1~10까지 행의 열 전체가 1로되면 블록사라짐.
 	사라지면 array_down함수 실행 */
@@ -605,7 +605,7 @@ int main()
 {
 	removeCursor(); //커서 깜박이 제거
 	showBoard(); //보드 출력
-	scoreLevel();
+	Print_scorelevel();
 	Run(); //보드 출력 움직임
 	getchar();
 }
