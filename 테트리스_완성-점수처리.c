@@ -296,14 +296,14 @@ int detect(int rotation, int move1, int move2)
 }
 
 //벽돌생성
-void showBlock(int rotation)
+void Show_block(int block)
 {
 	int x, y;
 	COORD cursor = getCursor();
-	int prove;
-	//int n=(rotation-1)%4;
-	prove = detect(rotation, 0, 0);
-	if (prove == 0)
+	int collision;
+	//int n=(block-1)%4;
+	collision = detect(block, 0, 0);
+	if (collision == 0)
 	{
 		//콘솔창위치 설정, 배열값에서 1은 ■출력,0은 출력없음
 		for (y = 0; y < 4; y++)
@@ -311,7 +311,7 @@ void showBlock(int rotation)
 			for (x = 0; x < 4; x++)
 			{
 				setCursor(cursor.X + (x * 2), cursor.Y + y);
-				if (block_array[rotation][y][x] == 1)
+				if (block_array[block][y][x] == 1)
 					printf("■");
 			}
 		}
@@ -530,7 +530,7 @@ void Run(void)
 			while (!_kbhit())
 			{
 				//블록 쇼
-				showBlock(block);
+				Show_block(block);
 				//딜레이 타임
 				Sleep(DELAY + speed);
 				//아래이동시 1있느지 확인
@@ -555,11 +555,11 @@ void Run(void)
 			{
 			case LEFT:
 				removeBlock(block, -2, 0);
-				showBlock(block);
+				Show_block(block);
 				break;
 			case RIGHT:
 				removeBlock(block, 2, 0);
-				showBlock(block);
+				Show_block(block);
 				break;
 			case UP:
 				// 첫수를구한다.
@@ -577,13 +577,13 @@ void Run(void)
 				{
 					removeBlock(block, 0, 0);
 					block = block_rotation;
-					showBlock(block);
+					Show_block(block);
 					break;
 				}
 				break;
 			case DOWN:
 				removeBlock(block, 0, 2);
-				showBlock(block);
+				Show_block(block);
 				break;
 			case SPACE:
 				while (1)
@@ -591,7 +591,7 @@ void Run(void)
 					removeBlock(block, 0, 1);
 					if (detect(block, 0, 1) == 1)
 					{
-						showBlock(block);
+						Show_block(block);
 						boardConginition(block, 0, 0);
 						break;
 					}
