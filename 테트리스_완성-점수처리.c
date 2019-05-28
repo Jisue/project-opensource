@@ -374,7 +374,7 @@ void Board_Conginition(int n, int move1, int move2)
 }
 
 /*배열,블록 옮김*/
-void array_down(int column)
+void Array_down(int column)
 {
 	int y, x;
 
@@ -453,7 +453,7 @@ void Check_line(void)
 					}
 					//행 기준으로 블록 내리기
 					countScore();
-					array_down(y);
+					Array_down(y);
 				}
 
 			}
