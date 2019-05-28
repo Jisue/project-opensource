@@ -320,23 +320,23 @@ void Show_block(int block)
 }
 
 
-void removeBlock(int rotation, int move1, int move2)
+void Remove_block(int block, int move1, int move2)
 {
-	int pr;
+	int collision;
 	int x, y;
 
 	COORD cursor = getCursor();
 
-	pr = detect(rotation, move1, move2);
+	collision = detect(block, move1, move2);
 
-	if (pr == 0)
+	if (collision == 0)
 	{
 		for (y = 0; y < 4; y++)
 		{
 			for (x = 0; x < 4; x++)
 			{
 				setCursor(cursor.X + (x * 2), cursor.Y + y);
-				if (block_array[rotation][y][x] == 1)
+				if (block_array[block][y][x] == 1)
 					printf(" ");
 			}
 		}
@@ -541,7 +541,7 @@ void Run(void)
 					Check_line();
 					break;
 				}
-				removeBlock(block, 0, 1);  //board배열 +1행 
+				Remove_block(block, 0, 1);  //board배열 +1행 
 			}
 			/*detect함수에서 배열값 1발견시 중지*/
 			if (last_line == 1)
@@ -554,11 +554,11 @@ void Run(void)
 			switch (key)
 			{
 			case LEFT:
-				removeBlock(block, -2, 0);
+				Remove_block(block, -2, 0);
 				Show_block(block);
 				break;
 			case RIGHT:
-				removeBlock(block, 2, 0);
+				Remove_block(block, 2, 0);
 				Show_block(block);
 				break;
 			case UP:
@@ -575,20 +575,20 @@ void Run(void)
 				collision_rotation = detect(block_rotation, 0, 0);
 				if (collision_rotation == 0)
 				{
-					removeBlock(block, 0, 0);
+					Remove_block(block, 0, 0);
 					block = block_rotation;
 					Show_block(block);
 					break;
 				}
 				break;
 			case DOWN:
-				removeBlock(block, 0, 2);
+				Remove_block(block, 0, 2);
 				Show_block(block);
 				break;
 			case SPACE:
 				while (1)
 				{
-					removeBlock(block, 0, 1);
+					Remove_block(block, 0, 1);
 					if (detect(block, 0, 1) == 1)
 					{
 						Show_block(block);
