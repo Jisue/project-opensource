@@ -415,7 +415,7 @@ void Print_scorelevel(void)
 	printf("점수:%d\n", score);
 }
 //레벨 스코어 계산
-void countScore(void)
+void Count_score(void)
 {
 	score += 10;
 	if (score % 30 == 0)
@@ -452,7 +452,7 @@ void Check_line(void)
 						printf("  ");
 					}
 					//행 기준으로 블록 내리기
-					countScore();
+					Count_score();
 					Array_down(y);
 				}
 
