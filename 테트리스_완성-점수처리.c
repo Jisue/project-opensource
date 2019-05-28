@@ -346,7 +346,7 @@ void Remove_block(int block, int move1, int move2)
 
 
 //블록 보드판에서 1인식
-void boardConginition(int n, int move1, int move2)
+void Board_Conginition(int n, int move1, int move2)
 {
 	COORD pos = getCursor();
 
@@ -537,7 +537,7 @@ void Run(void)
 				if (detect(block, 0, 1) == 1)
 				{
 					last_line = 1;
-					boardConginition(block, 0, 0);//보드 벽돌 배열 1추가
+					Board_Conginition(block, 0, 0);//보드 벽돌 배열 1추가
 					Check_line();
 					break;
 				}
@@ -592,7 +592,7 @@ void Run(void)
 					if (detect(block, 0, 1) == 1)
 					{
 						Show_block(block);
-						boardConginition(block, 0, 0);
+						Board_Conginition(block, 0, 0);
 						break;
 					}
 				}
