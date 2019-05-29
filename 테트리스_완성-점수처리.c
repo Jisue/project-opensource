@@ -402,7 +402,9 @@ void Array_down(int column)
 	}
 	/*board배열 0행에 0삽입*/
 	for (x = 1; x <= 10; x++)
+	{
 		board[0][x] = 0;
+	}
 
 	/*board배열 1값 전체 출력 */
 	for (y = 1; y <= 19; y++)
@@ -411,9 +413,13 @@ void Array_down(int column)
 		{
 			Set_cursor((BOARD_X)+x * 2 + 1, y + BOARD_Y);
 			if (board[y][x] == 1)
+			{
 				printf("■");
+			}
 			else
+			{
 				printf("  ");
+			}
 		}
 	}
 
