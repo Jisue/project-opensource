@@ -334,7 +334,10 @@ void Show_block(int block)
 	}
 }
 
-
+/*
+void Remove_block(int block, int move1, int move2)
+함수 기능: 블록모양을 위한 변수 rotation과 양옆으로 움직일 거리만큼 move1, move2를 인자로 받아서 새로운 위치에 showBlock함수를 이용하기 전에 블록을 지워주는 함수이다.
+*/
 void Remove_block(int block, int move1, int move2)
 {
 	int collision;
@@ -342,16 +345,17 @@ void Remove_block(int block, int move1, int move2)
 
 	COORD cursor = Get_cursor();
 
-	collision = Detect(block, move1, move2);
+	collision = Detect(block, move1, move2); //블록이 이동할 곳이 벽과 충돌하는지 검사
 
 	if (collision == 0)
 	{
+		//콘솔창위치 설정
 		for (y = 0; y < 4; y++)
 		{
 			for (x = 0; x < 4; x++)
 			{
 				Set_cursor(cursor.X + (x * 2), cursor.Y + y);
-				if (block_array[block][y][x] == 1)
+				if (block_array[block][y][x] == 1) //배열값이 1이면 기존 블록을 지움
 				{
 					printf(" ");
 				}
