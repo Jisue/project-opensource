@@ -223,7 +223,7 @@ COORD Get_cursor(void)
 }
 //void showBlock(int rotation);
 
-void showBoard(void)
+void Show_board(void)
 {
 	int x, y;
 
@@ -604,7 +604,7 @@ void Run(void)
 int main()
 {
 	Remove_cursor(); //커서 깜박이 제거
-	showBoard(); //보드 출력
+	Show_board(); //보드 출력
 	Print_scorelevel();
 	Run(); //보드 출력 움직임
 	getchar();
