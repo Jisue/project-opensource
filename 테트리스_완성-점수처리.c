@@ -449,14 +449,18 @@ void Print_scorelevel(void)
 	Set_cursor(40, 7);
 	printf("점수:%d\n", score); //점수 출력
 }
-//레벨 스코어 계산
+
+/*
+void Count_score(void)
+함수 기능: 점수가 올라갔을때 현재 점수와 레벨을 증가시키는 함수이다.
+*/
 void Count_score(void)
 {
 	score += 10;
-	if (score % 30 == 0)
+	if (score % 30 == 0) //점수가 30점 오를때마다 레벨과 속도 변경.
 	{
 		level += 1;
-		speed -= 30;
+		speed -= 30; // 레벨이 올라가면 블록이 떨어지는 속도를 증가함.
 	}
 	Print_scorelevel();
 }
