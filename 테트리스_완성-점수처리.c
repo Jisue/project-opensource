@@ -365,9 +365,11 @@ void Remove_block(int block, int move1, int move2)
 	}
 }
 
-
-//블록 보드판에서 1인식
+/*
 void Board_Conginition(int n, int move1, int move2)
+함수 기능: 블록이 이동할 자리의 배열 값을 1로 바꿔주는 함수이다. 
+*/
+void Board_Conginition(int n, int move1, int move2) //블록모양을 결정하는 int형 변수 n, 좌우 움직임을 표현하는 int형 변수 move1,move2
 {
 	COORD pos = Get_cursor();
 
@@ -375,16 +377,16 @@ void Board_Conginition(int n, int move1, int move2)
 	int arrY = pos.Y + move2;  //콘솔좌표 행
 	int x, y;
 
-	/*커서위치정보->배열위치정보 변경*/
-	arrX = arrX / 2 - 2; //콘솔좌표->배열 열 변환값
-	arrY = arrY - 2;	 //콘솔좌표->배열 행 변환값
+	//커서위치정보를 배열위치정보 변경
+	arrX = arrX / 2 - 2; //배열 열 변환값
+	arrY = arrY - 2;	 //배열 행 변환값
 
-	//보드판에서 블록 이동시 1인식
+	//콘솔창위치 설정
 	for (y = 0; y < 4; y++)
 	{
 		for (x = 0; x < 4; x++)
 		{
-			if (block_array[n][y][x] == 1)
+			if (block_array[n][y][x] == 1) //보드판에서 블록 이동시 1인식해서 바꿈
 			{
 				board[arrY + y][arrX + x] = 1;
 			}
