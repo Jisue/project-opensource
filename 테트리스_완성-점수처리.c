@@ -198,7 +198,7 @@ int block_array[][4][4] = {
 							{0, 0, 0, 0} },
 
 };
-void removeCursor(void)
+void Remove_cursor(void)
 {
 	CONSOLE_CURSOR_INFO curInfo;
 	GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
@@ -603,7 +603,7 @@ void Run(void)
 
 int main()
 {
-	removeCursor(); //커서 깜박이 제거
+	Remove_cursor(); //커서 깜박이 제거
 	showBoard(); //보드 출력
 	Print_scorelevel();
 	Run(); //보드 출력 움직임
