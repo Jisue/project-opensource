@@ -349,7 +349,9 @@ void Remove_block(int block, int move1, int move2)
 			{
 				Set_cursor(cursor.X + (x * 2), cursor.Y + y);
 				if (block_array[block][y][x] == 1)
+				{
 					printf(" ");
+				}
 			}
 		}
 		Set_cursor(cursor.X + move1, cursor.Y + move2);
