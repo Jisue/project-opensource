@@ -396,12 +396,15 @@ void Board_Conginition(int n, int move1, int move2) //블록모양을 결정하는 int형 
 
 }
 
-/*배열,블록 옮김*/
+/*
+void Array_down(int column)
+함수 기능: int형 변수 colum을 인자로 받아서 colum을 기준으로 블록배열을 밑으로 한 칸 이동시켜주는 함수이다. 
+*/
 void Array_down(int column)
 {
 	int y, x;
 
-	/*board배열 값 행 다운*/
+	//board배열 값을 행기준으로 밑으로 이동
 	for (y = column; y >= 0; y--)
 	{
 		for (x = 1; x <= 10; x++)
@@ -409,19 +412,19 @@ void Array_down(int column)
 			board[y][x] = board[y - 1][x];
 		}
 	}
-	/*board배열 0행에 0삽입*/
+	//1행 당겨졌으므로 전의 블록 마지막줄을 비움. 
 	for (x = 1; x <= 10; x++)
 	{
 		board[0][x] = 0;
 	}
 
-	/*board배열 1값 전체 출력 */
-	for (y = 1; y <= 19; y++)
+	//board배열의 출력
+	for (y = 1; y <= 19; y++) //19행부터 1행까지 검사
 	{
-		for (x = 1; x <= 10; x++)
+		for (x = 1; x <= 10; x++)//1열부터 10열까지 검사
 		{
 			Set_cursor((BOARD_X)+x * 2 + 1, y + BOARD_Y);
-			if (board[y][x] == 1)
+			if (board[y][x] == 1) //1값에 ■출력, 0은 비움.
 			{
 				printf("■");
 			}
