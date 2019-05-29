@@ -270,7 +270,7 @@ void Initial(int x, int y)
 }
 
 //removeBlock함수 작동전 벽인 or 아닌지확인
-int detect(int rotation, int move1, int move2)
+int Detect(int block, int move1, int move2)
 {
 	int x, y;
 	int arrX, arrY; //배열좌표저장
@@ -287,7 +287,7 @@ int detect(int rotation, int move1, int move2)
 	{
 		for (x = 0; x < 4; x++)
 		{
-			if ((block_array[rotation][y][x] == 1) && board[arrY + y][arrX + x] == 1)
+			if ((block_array[block][y][x] == 1) && board[arrY + y][arrX + x] == 1)
 				return 1;  //보드와 벽돌 겹침
 		}
 	}
@@ -302,7 +302,7 @@ void Show_block(int block)
 	COORD cursor = Get_cursor();
 	int collision;
 	//int n=(block-1)%4;
-	collision = detect(block, 0, 0);
+	collision = Detect(block, 0, 0);
 	if (collision == 0)
 	{
 		//콘솔창위치 설정, 배열값에서 1은 ■출력,0은 출력없음
@@ -327,7 +327,7 @@ void Remove_block(int block, int move1, int move2)
 
 	COORD cursor = Get_cursor();
 
-	collision = detect(block, move1, move2);
+	collision = Detect(block, move1, move2);
 
 	if (collision == 0)
 	{
@@ -463,7 +463,7 @@ void Check_line(void)
 
 int Game_over(int block)
 {
-	if (detect(block, 0, 0))
+	if (Detect(block, 0, 0))
 	{
 		return 5; //게임 끝
 	}
@@ -534,7 +534,7 @@ void Run(void)
 				//딜레이 타임
 				Sleep(DELAY + speed);
 				//아래이동시 1있느지 확인
-				if (detect(block, 0, 1) == 1)
+				if (Detect(block, 0, 1) == 1)
 				{
 					last_line = 1;
 					Board_Conginition(block, 0, 0);//보드 벽돌 배열 1추가
@@ -572,7 +572,7 @@ void Run(void)
 					block_rotation = block + 1;
 				}
 
-				collision_rotation = detect(block_rotation, 0, 0);
+				collision_rotation = Detect(block_rotation, 0, 0);
 				if (collision_rotation == 0)
 				{
 					Remove_block(block, 0, 0);
@@ -589,7 +589,7 @@ void Run(void)
 				while (1)
 				{
 					Remove_block(block, 0, 1);
-					if (detect(block, 0, 1) == 1)
+					if (Detect(block, 0, 1) == 1)
 					{
 						Show_block(block);
 						Board_Conginition(block, 0, 0);
