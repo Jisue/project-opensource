@@ -305,23 +305,26 @@ int Detect(int block, int move1, int move2)
 
 }
 
-//벽돌생성
+/*
+void Show_block(int block)
+함수 기능: 블록 모양을 인자로 받아서 게임벽 안에서 block의 배열값을 확인하여 블록을 나타나게 해주는 함수이다.
+*/
 void Show_block(int block)
 {
 	int x, y;
 	COORD cursor = Get_cursor();
 	int collision;
-	//int n=(block-1)%4;
-	collision = Detect(block, 0, 0);
+	
+	collision = Detect(block, 0, 0); // 벽과 충돌하는지 검사
 	if (collision == 0)
 	{
-		//콘솔창위치 설정, 배열값에서 1은 ■출력,0은 출력없음
+		//콘솔창위치 설정
 		for (y = 0; y < 4; y++)
 		{
 			for (x = 0; x < 4; x++)
 			{
 				Set_cursor(cursor.X + (x * 2), cursor.Y + y);
-				if (block_array[block][y][x] == 1)
+				if (block_array[block][y][x] == 1) //배열값에서 1은 ■출력, 0은 출력없음
 				{
 					printf("■");
 				}
