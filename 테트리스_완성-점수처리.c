@@ -211,7 +211,7 @@ void Set_cursor(int x, int y)
 	COORD pos = { x,y };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
-COORD getCursor(void)
+COORD Get_cursor(void)
 {
 	COORD cur;
 	CONSOLE_SCREEN_BUFFER_INFO curInfo;
@@ -274,7 +274,7 @@ int detect(int rotation, int move1, int move2)
 {
 	int x, y;
 	int arrX, arrY; //배열좌표저장
-	COORD pos = getCursor();
+	COORD pos = Get_cursor();
 
 	arrX = pos.X + move1;
 	arrY = pos.Y + move2;
@@ -299,7 +299,7 @@ int detect(int rotation, int move1, int move2)
 void Show_block(int block)
 {
 	int x, y;
-	COORD cursor = getCursor();
+	COORD cursor = Get_cursor();
 	int collision;
 	//int n=(block-1)%4;
 	collision = detect(block, 0, 0);
@@ -325,7 +325,7 @@ void Remove_block(int block, int move1, int move2)
 	int collision;
 	int x, y;
 
-	COORD cursor = getCursor();
+	COORD cursor = Get_cursor();
 
 	collision = detect(block, move1, move2);
 
@@ -348,7 +348,7 @@ void Remove_block(int block, int move1, int move2)
 //블록 보드판에서 1인식
 void Board_Conginition(int n, int move1, int move2)
 {
-	COORD pos = getCursor();
+	COORD pos = Get_cursor();
 
 	int arrX = pos.X + move1;  //콘솔좌표 열
 	int arrY = pos.Y + move2;  //콘솔좌표 행
