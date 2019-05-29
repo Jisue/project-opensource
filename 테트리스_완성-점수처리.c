@@ -436,15 +436,18 @@ void Array_down(int column)
 	}
 
 }
-//레벨 스코어 출력
+/*
+void Print_scorelevel(void)
+함수 기능: 지정된 위치에 현재 점수와 레벨을 출력해주는 함수이다.
+*/
 void Print_scorelevel(void)
 {
 	Set_cursor(40, 3);
-	printf("★레벨10 게임 클리어★");
+	printf("★레벨10 게임 클리어★"); 
 	Set_cursor(40, 5);
-	printf("레벨:%d\n", level);
+	printf("레벨:%d\n", level); //레벨 출력
 	Set_cursor(40, 7);
-	printf("점수:%d\n", score);
+	printf("점수:%d\n", score); //점수 출력
 }
 //레벨 스코어 계산
 void Count_score(void)
