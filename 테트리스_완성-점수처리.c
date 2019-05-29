@@ -322,7 +322,9 @@ void Show_block(int block)
 			{
 				Set_cursor(cursor.X + (x * 2), cursor.Y + y);
 				if (block_array[block][y][x] == 1)
+				{
 					printf("бс");
+				}
 			}
 		}
 		Set_cursor(cursor.X, cursor.Y);
