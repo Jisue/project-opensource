@@ -296,7 +296,9 @@ int Detect(int block, int move1, int move2)
 		for (x = 0; x < 4; x++)
 		{
 			if ((block_array[block][y][x] == 1) && board[arrY + y][arrX + x] == 1)
+			{
 				return 1;  //보드와 벽돌 겹침
+			}
 		}
 	}
 	return 0;  //겹치지 않음
