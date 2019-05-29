@@ -206,7 +206,7 @@ void Remove_cursor(void)
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
 }
 
-void setCursor(int x, int y)
+void Set_cursor(int x, int y)
 {
 	COORD pos = { x,y };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
@@ -231,14 +231,14 @@ void showBoard(void)
 	for (x = 1; x <= BOARD_WIDTH + 1; x++)
 	{
 		board[BOARD_HEIGHT][x] = 1; //board 배열 중앙 1인식
-		setCursor((BOARD_X)+x * 2, BOARD_Y + BOARD_HEIGHT);  //콘솔좌표
+		Set_cursor((BOARD_X)+x * 2, BOARD_Y + BOARD_HEIGHT);  //콘솔좌표
 		printf("━");
 	}
 	//왼쪽 보드 라인
 	for (y = 0; y < BOARD_HEIGHT + 1; y++)
 	{
 		board[y][0] = 1; //board 배열 왼쪽 1인식
-		setCursor(BOARD_X, BOARD_Y + y);
+		Set_cursor(BOARD_X, BOARD_Y + y);
 		if (y == BOARD_HEIGHT)
 			printf("┗");
 		else
@@ -248,7 +248,7 @@ void showBoard(void)
 	for (y = 0; y < BOARD_HEIGHT + 1; y++)
 	{
 		board[y][BOARD_WIDTH + 1] = 1; //board 배열 오른쪽 1인식
-		setCursor(BOARD_X + (BOARD_WIDTH + 2) * 2, BOARD_Y + y);
+		Set_cursor(BOARD_X + (BOARD_WIDTH + 2) * 2, BOARD_Y + y);
 		if (y == BOARD_HEIGHT)
 			printf("┛");
 		else
@@ -266,7 +266,7 @@ void initial(int x, int y)
 {
 	curX = x;
 	curY = y;
-	setCursor(x, y);
+	Set_cursor(x, y);
 }
 
 //removeBlock함수 작동전 벽인 or 아닌지확인
@@ -310,12 +310,12 @@ void Show_block(int block)
 		{
 			for (x = 0; x < 4; x++)
 			{
-				setCursor(cursor.X + (x * 2), cursor.Y + y);
+				Set_cursor(cursor.X + (x * 2), cursor.Y + y);
 				if (block_array[block][y][x] == 1)
 					printf("■");
 			}
 		}
-		setCursor(cursor.X, cursor.Y);
+		Set_cursor(cursor.X, cursor.Y);
 	}
 }
 
@@ -335,12 +335,12 @@ void Remove_block(int block, int move1, int move2)
 		{
 			for (x = 0; x < 4; x++)
 			{
-				setCursor(cursor.X + (x * 2), cursor.Y + y);
+				Set_cursor(cursor.X + (x * 2), cursor.Y + y);
 				if (block_array[block][y][x] == 1)
 					printf(" ");
 			}
 		}
-		setCursor(cursor.X + move1, cursor.Y + move2);
+		Set_cursor(cursor.X + move1, cursor.Y + move2);
 	}
 }
 
@@ -395,7 +395,7 @@ void Array_down(int column)
 	{
 		for (x = 1; x <= 10; x++)
 		{
-			setCursor((BOARD_X)+x * 2 + 1, y + BOARD_Y);
+			Set_cursor((BOARD_X)+x * 2 + 1, y + BOARD_Y);
 			if (board[y][x] == 1)
 				printf("■");
 			else
@@ -407,11 +407,11 @@ void Array_down(int column)
 //레벨 스코어 출력
 void Print_scorelevel(void)
 {
-	setCursor(40, 3);
+	Set_cursor(40, 3);
 	printf("★레벨10 게임 클리어★");
-	setCursor(40, 5);
+	Set_cursor(40, 5);
 	printf("레벨:%d\n", level);
-	setCursor(40, 7);
+	Set_cursor(40, 7);
 	printf("점수:%d\n", score);
 }
 //레벨 스코어 계산
@@ -448,7 +448,7 @@ void Check_line(void)
 				{
 					for (x = 1; x < 11; x++)
 					{
-						setCursor((x + 2) * 2, y + 2);
+						Set_cursor((x + 2) * 2, y + 2);
 						printf("  ");
 					}
 					//행 기준으로 블록 내리기
@@ -507,14 +507,14 @@ void Run(void)
 
 		if (Game_win())
 		{
-			setCursor(35, 20);
+			Set_cursor(35, 20);
 			printf("GAME WIN");
 			getchar();
 			exit(1);
 		}
 		if (Game_over(block))
 		{
-			setCursor(35, 20);
+			Set_cursor(35, 20);
 			printf("GAME OVER");
 			getchar();
 			exit(1);
