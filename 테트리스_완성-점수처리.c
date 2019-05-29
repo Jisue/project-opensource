@@ -240,9 +240,13 @@ void Show_board(void)
 		board[y][0] = 1; //board 배열 왼쪽 1인식
 		Set_cursor(BOARD_X, BOARD_Y + y);
 		if (y == BOARD_HEIGHT)
+		{
 			printf("┗");
+		}
 		else
+		{
 			printf("┃");
+		}
 	}
 	//오른쪽 보드 라인
 	for (y = 0; y < BOARD_HEIGHT + 1; y++)
@@ -250,9 +254,13 @@ void Show_board(void)
 		board[y][BOARD_WIDTH + 1] = 1; //board 배열 오른쪽 1인식
 		Set_cursor(BOARD_X + (BOARD_WIDTH + 2) * 2, BOARD_Y + y);
 		if (y == BOARD_HEIGHT)
+		{
 			printf("┛");
+		}
 		else
+		{
 			printf("┃");
+		}
 	}
 
 	//모서리값 값 변경
