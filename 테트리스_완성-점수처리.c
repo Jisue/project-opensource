@@ -262,7 +262,7 @@ void Show_board(void)
 	puts(" ");
 }
 
-void initial(int x, int y)
+void Initial(int x, int y)
 {
 	curX = x;
 	curY = y;
@@ -497,7 +497,7 @@ void Run(void)
 	/*게임 시작~끝*/
 	while (1)
 	{
-		initial(CBLOCK_X, CBLOCK_Y); //블록 생성 위치 좌표 
+		Initial(CBLOCK_X, CBLOCK_Y); //블록 생성 위치 좌표 
 
 		block = (rand() % RAND) * 4;//난수생성
 		block = rand() % RAND;
