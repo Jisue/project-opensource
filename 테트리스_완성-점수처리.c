@@ -587,11 +587,7 @@ void Run(void)
    {
       Initial(CBLOCK_X, CBLOCK_Y); 
 
-      block = (rand() % RAND) * 4; //블록 모양 결정
-      block = rand() % RAND;
-      block = rand() % 7;
-      block = block * 4;
-      block = 6;
+      block = (rand() % 7) * 4;
 
       if (Game_win())
       {
