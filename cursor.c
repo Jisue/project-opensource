@@ -2,7 +2,7 @@
 
 /*
 void Remove_cursor(void)
-함수기능: 콘솔창 커서가 보이지 않게 바꾼다.
+함수기능: 콘솔 창 커서가 보이지 않게 바꾼다.
 */
 void Remove_cursor(void)
 {

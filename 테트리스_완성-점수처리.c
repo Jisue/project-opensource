@@ -1,5 +1,6 @@
 #include "block.h"
 #include "cursor.h"
+#include "scorelevel.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -18,15 +19,12 @@
 #define DOWN 80
 #define SPACE 32
 
-int static score = 0;
-int static level = 1;
-int static speed = 180;
 int curX, curY;
 int board[BOARD_HEIGHT + 1][BOARD_WIDTH + 2] = { 0, };
 
 /*
 void Show_board(void)
-함수기능: 콘솔창에 보드를 출력하고 보드 부분은 배열에 저장한다.
+함수기능: 콘솔 창에 보드를 출력하고 보드 부분은 배열에 저장한다.
 */
 void Show_board(void)
 {
@@ -79,7 +77,7 @@ int Detect(int block, int move1, int move2)
 block: 블록의 모양을 결정하는 값을 저장한다.
 move1: x축으로 블록을 움직일 값을 저장한다.
 move2: y축으로 블록을 움직일 값을 저장한다.
-함수기능: 블록을 움직이면 벽과 충돌하는지 확인한다.
+함수기능: 블록을 움직이면 보드와 충돌하는지 확인한다.
 */
 int Detect(int block, int move1, int move2)
 {
@@ -98,8 +96,10 @@ int Detect(int block, int move1, int move2)
 	{
 		for (x = 0; x < 4; x++)
 		{
-			if ((block_array[block][y][x] == 1) && board[arrY + y][arrX + x] == 1)
-				return 1; //보드와 블록이 충돌함 
+			if ((block_array[block][y][x] == 1) && board[arrY + y][arrX + x] == 1) //보드와 블록이 충돌함
+			{
+				return 1;
+			}
 		}
 	}
 	return 0;  //보드와 블록이 충돌하지 않음
@@ -173,14 +173,14 @@ void Remove_block(int block, int move1, int move2)
 }
 
 /*
-void Board_Conginition(int n, int move1, int move2)
+void Board_Conginition(int block, int move1, int move2)
 함수 인자 기능
-n: 블록의 모양을 결정하는 값을 저장한다.
+block: 블록의 모양을 결정하는 값을 저장한다.
 move1: x축으로 블록을 움직일 값을 저장한다.
 move2: y축으로 블록을 움직일 값을 저장한다.
-함수 기능: 블록이 이동할 자리의 배열 값을 1로 바꿔주는 함수이다.
+함수 기능: 블록을 보드로 변경해주는 함수이다.
 */
-void Board_Conginition(int n, int move1, int move2)
+void Board_Conginition(int block, int move1, int move2)
 {
 	COORD pos = Get_cursor();
 
@@ -188,16 +188,15 @@ void Board_Conginition(int n, int move1, int move2)
 	int arrY = pos.Y + move2; //콘솔 좌표 행
 	int x, y;
 
-	//커서위치정보를 배열위치정보 변경
+	//커서 위치 정보를 배열 위치 정보로 변경
 	arrX = arrX / 2 - 2; //배열 열 변환 값
 	arrY = arrY - 2; //배열 행 변환 값
 
-	//콘솔창위치 설정
 	for (y = 0; y < 4; y++)
 	{
 		for (x = 0; x < 4; x++)
 		{
-			if (block_array[n][y][x] == 1) //보드판에서 블록 이동시 배열에 블록이 있는지 인식해서 바꿈
+			if (block_array[block][y][x] == 1) //만약 블록이 있다면 보드로 변경
 			{
 				board[arrY + y][arrX + x] = 1;
 			}
@@ -211,13 +210,13 @@ void Board_Conginition(int n, int move1, int move2)
 void Array_down(int column)
 함수 인자 기능
 colum: 행 값을 저장한다.
-함수 기능: colum을 기준으로 블록배열을 밑으로 한 칸 이동시켜주는 함수이다.
+함수 기능: colum을 기준으로 블록 배열을 밑으로 한 칸 이동시켜주는 함수이다.
 */
 void Array_down(int column)
 {
 	int y, x;
 
-	//board배열 값을 행기준으로 밑으로 이동
+	//board 배열 값을 행 기준으로 밑으로 이동
 	for (y = column; y >= 0; y--)
 	{
 		for (x = 1; x <= 10; x++)
@@ -225,7 +224,8 @@ void Array_down(int column)
 			board[y][x] = board[y - 1][x];
 		}
 	}
-	//1행 당겨졌으므로 전의 블록 마지막줄을 비움. 
+
+	//1행 당겨졌으므로 전의 블록 마지막 줄을 비움. 
 	for (x = 1; x <= 10; x++)
 	{
 		board[0][x] = 0;
@@ -411,7 +411,8 @@ void Run(void)
 	while (1) //게임 시작~끝
 	{
 		Set_cursor(CBLOCK_X, CBLOCK_Y);
-		block = (rand() % 7) * 4;
+		block = (rand() % 7);
+		block *= 4;
 
 		if (Game_win())
 		{
