@@ -2,6 +2,16 @@
 
 #define __BLOCK_H__
 
+#define CBLOCK_X 13
+#define CBLOCK_Y 2
+#define DELAY 100
+
+#define LEFT 75
+#define RIGHT 77
+#define UP 72
+#define DOWN 80
+#define SPACE 32
+
 int block_array[][4][4] = {
 	/* 첫 번째 블록
 	  ■
@@ -171,5 +181,10 @@ int block_array[][4][4] = {
 					  {0, 0, 0, 0} },
 
 };
+
+void Show_block(int block);
+void Remove_block(int block, int move1, int move2);
+void Array_down(int column);
+void Move_block(int block);
 
 #endif
