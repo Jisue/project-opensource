@@ -513,11 +513,15 @@ int Game_over(int block)
 	}
 }
 
+/*
+int Game_win(void)
+함수 기능: 만약 level의 값이 10이라면 게임 승리라고 판단한다.
+*/
 int Game_win(void)
 {
 	if (level == 10)
 	{
-		return 1; //게임승
+		return 1; //게임 승리
 	}
 	else
 	{
