@@ -1,18 +1,18 @@
 #include <stdio.h>
 #include <windows.h>
-#include <stdlib.h> //
+#include <stdlib.h>
 #include <time.h>
 #include <conio.h>
 
-#define BOARD_HEIGHT 20 // ┃개수
-#define BOARD_WIDTH 10  // ━개수
-#define BOARD_X 4 //보드 열 x좌표
-#define BOARD_Y 2 //보드 행 y좌표
+#define BOARD_HEIGHT 20
+#define BOARD_WIDTH 10
+#define BOARD_X 4
+#define BOARD_Y 2
 
 #define CBLOCK_X 13
 #define CBLOCK_Y 2
-#define DELAY 100//지연
-#define RAND 4//난수
+#define DELAY 100
+#define RAND 4
 
 #define LEFT 75
 #define RIGHT 77
@@ -20,10 +20,10 @@
 #define DOWN 80
 #define SPACE 32
 
-int static score = 0; //게임점수
-int static level = 1; //게임레벨
+int static score = 0;
+int static level = 1;
 int static speed = 180;
-int curX, curY; //콘솔커서
+int curX, curY;
 int board[BOARD_HEIGHT + 1][BOARD_WIDTH + 2] = { 0, };
 int block_array[][4][4] = {
    /*■
