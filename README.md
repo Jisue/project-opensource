@@ -16,7 +16,7 @@ git clone https://github.com/hhyein/project_tetris.git
 ```
 ## 사용 방법
 ```
-1. branch를 생성
+1. branch 생성
 2. 소스 코드 수정
 3. add -> commit -> push
 4. pull request 작성
