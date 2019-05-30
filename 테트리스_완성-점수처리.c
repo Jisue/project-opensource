@@ -496,6 +496,11 @@ void Check_line(void)
 	}
 }
 
+/*
+int Game_over(int block)
+함수 인자 기능: 블록의 모양을 결정하는 값을 저장한다.
+함수 기능: 만약 블록을 움직이지 않았음에도 불구하고 보드와 충돌하게 된다면 게임 오버라고 판단한다.
+*/
 int Game_over(int block)
 {
 	if (Detect(block, 0, 0))
