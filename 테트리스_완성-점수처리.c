@@ -196,12 +196,16 @@ int block_array[][4][4] = {
                      {0, 0, 0, 0} },
 
 };
+/*
+void Remove_cursor(void)
+함수기능: 콘솔창 커서가 보이지 않게 바꾼다.
+*/
 void Remove_cursor(void)
 {
-   CONSOLE_CURSOR_INFO curInfo;
-   GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
-   curInfo.bVisible = 0;
-   SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
+	CONSOLE_CURSOR_INFO curInfo;
+	GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
+	curInfo.bVisible = 0;
+	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
 }
 
 void Set_cursor(int x, int y)
