@@ -283,7 +283,13 @@ void Show_board(void)
 
 	puts(" ");
 }
-
+/*
+void Initial(int x, int y)
+함수 인자 기능
+x: 커서 좌표의 x 값을 저장한다.
+y: 커서 좌표의 y 값을 저장한다.
+함수기능: 커서를 원하는 좌표로 이동시킨다.
+*/
 void Initial(int x, int y)
 {
    curX = x;
