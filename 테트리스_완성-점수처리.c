@@ -208,10 +208,17 @@ void Remove_cursor(void)
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
 }
 
+/*
+void Set_cursor(int x, int y)
+함수 인자 기능
+x: 커서 좌표의 x 값을 저장한다.
+y: 커서 좌표의 y 값을 저장한다.
+함수기능: 커서를 원하는 좌표로 이동시킨다.
+*/
 void Set_cursor(int x, int y)
 {
-   COORD pos = { x,y };
-   SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	COORD pos = { x,y };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 COORD Get_cursor(void)
 {
