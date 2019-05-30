@@ -23,6 +23,12 @@ git clone https://github.com/hhyein/project_tetris.git
 5. merge
 ```
 ------------------------------
+#### 팀원
+>https://github.com/jisue
+
+>https://github.com/shuffle2479
+
+>https://github.com/hhyein
 #### _궁금한 점 있으면 메일 보내주세요_
 ```
 gumdung98@naver.com
