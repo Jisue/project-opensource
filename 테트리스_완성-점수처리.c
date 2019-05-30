@@ -1,9 +1,8 @@
+#include "block.h"
+#include "cursor.h"
 #include <stdio.h>
-#include <windows.h>
 #include <stdlib.h>
 #include <time.h>
-#include <conio.h>
-#include "block.h"
 
 #define BOARD_HEIGHT 20
 #define BOARD_WIDTH 10
@@ -26,45 +25,6 @@ int static level = 1;
 int static speed = 180;
 int curX, curY;
 int board[BOARD_HEIGHT + 1][BOARD_WIDTH + 2] = { 0, };
-
-/*
-void Remove_cursor(void)
-함수기능: 콘솔창 커서가 보이지 않게 바꾼다.
-*/
-void Remove_cursor(void)
-{
-	CONSOLE_CURSOR_INFO curInfo;
-	GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
-	curInfo.bVisible = 0;
-	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
-}
-
-/*
-void Set_cursor(int x, int y)
-함수 인자 기능
-x: 커서 좌표의 x 값을 저장한다.
-y: 커서 좌표의 y 값을 저장한다.
-함수기능: 커서를 원하는 좌표로 이동시킨다.
-*/
-void Set_cursor(int x, int y)
-{
-	COORD pos = { x,y };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-}
-/*
-COORD Get_cursor(void)
-함수기능: 커서의 좌표 정보를 얻어온다.
-*/
-COORD Get_cursor(void)
-{
-	COORD cur;
-	CONSOLE_SCREEN_BUFFER_INFO curInfo;
-
-	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
-	cur.X = curInfo.dwCursorPosition.X;
-	cur.Y = curInfo.dwCursorPosition.Y;
-	return cur;
-}
 
 /*
 void Show_board(void)
@@ -113,19 +73,6 @@ void Show_board(void)
 	board[20][11] = 1;
 
 	puts(" ");
-}
-/*
-void Initial(int x, int y)
-함수 인자 기능
-x: 커서 좌표의 x 값을 저장한다.
-y: 커서 좌표의 y 값을 저장한다.
-함수기능: 커서를 원하는 좌표로 이동시킨다.
-*/
-void Initial(int x, int y)
-{
-	curX = x;
-	curY = y;
-	Set_cursor(x, y);
 }
 
 /*
@@ -493,7 +440,7 @@ void Run(void)
 
 	while (1) //게임 시작~끝
 	{
-		Initial(CBLOCK_X, CBLOCK_Y);
+		Set_cursor(CBLOCK_X, CBLOCK_Y);
 		block = (rand() % 7) * 4;
 
 		if (Game_win())
