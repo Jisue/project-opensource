@@ -235,51 +235,53 @@ COORD Get_cursor(void)
 	return cur;
 }
 
+/*
+void Show_board(void)
+함수기능: 콘솔창에 보드를 출력하고 보드 부분은 배열에 저장한다.
+*/
 void Show_board(void)
 {
-   int x, y;
+	int x, y;
 
-   //중앙 보드 라인
-   for (x = 1; x <= BOARD_WIDTH + 1; x++)
-   {
-      board[BOARD_HEIGHT][x] = 1; //board 배열 중앙 1인식
-      Set_cursor((BOARD_X)+x * 2, BOARD_Y + BOARD_HEIGHT);  //콘솔좌표
-      printf("━");
-   }
-   //왼쪽 보드 라인
-   for (y = 0; y < BOARD_HEIGHT + 1; y++)
-   {
-      board[y][0] = 1; //board 배열 왼쪽 1인식
-      Set_cursor(BOARD_X, BOARD_Y + y);
-      if (y == BOARD_HEIGHT)
-      {
-         printf("┗");
-      }
-      else
-      {
-         printf("┃");
-      }
-   }
-   //오른쪽 보드 라인
-   for (y = 0; y < BOARD_HEIGHT + 1; y++)
-   {
-      board[y][BOARD_WIDTH + 1] = 1; //board 배열 오른쪽 1인식
-      Set_cursor(BOARD_X + (BOARD_WIDTH + 2) * 2, BOARD_Y + y);
-      if (y == BOARD_HEIGHT)
-      {
-         printf("┛");
-      }
-      else
-      {
-         printf("┃");
-      }
-   }
+	for (x = 1; x <= BOARD_WIDTH + 1; x++) //위 아래 보드 출력
+	{
+		board[BOARD_HEIGHT][x] = 1;  
+		Set_cursor((BOARD_X)+x * 2, BOARD_Y + BOARD_HEIGHT);
+		printf("━");
+	}
+	
+	for (y = 0; y < BOARD_HEIGHT + 1; y++) //왼쪽 보드와 모서리 출력
+	{
+		board[y][0] = 1;
+		Set_cursor(BOARD_X, BOARD_Y + y);
+		if (y == BOARD_HEIGHT) //모서리
+		{
+			printf("┗");
+		}
+		else
+		{
+			printf("┃"); //왼쪽
+		}
+	}
+	//오른쪽 보드와 모서리 출력
+	for (y = 0; y < BOARD_HEIGHT + 1; y++) //오른쪽 보드와 모서리 출력
+	{
+		board[y][BOARD_WIDTH + 1] = 1;
+		Set_cursor(BOARD_X + (BOARD_WIDTH + 2) * 2, BOARD_Y + y);
+		if (y == BOARD_HEIGHT)
+		{
+			printf("┛"); //모서리
+		}
+		else
+		{
+			printf("┃"); //오른쪽
+		}
+	}
 
-   //모서리값 값 변경
-   board[20][0] = 1;
-   board[20][11] = 1;
+	board[20][0] = 1;
+	board[20][11] = 1;
 
-   puts(" ");
+	puts(" ");
 }
 
 void Initial(int x, int y)
