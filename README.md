@@ -6,8 +6,6 @@
 ● git 사용
 ● github 사용
 ```
-## 기존 오픈소스
->https://github.com/BerkleyLim/Tetris
 ------------------------------
 ## 설치 방법
 cmd 창에서 아래 명령어를 실행
@@ -22,6 +20,9 @@ git clone https://github.com/hhyein/project_tetris.git
 4. pull request 작성
 5. merge
 ```
+------------------------------
+## 기존 오픈소스
+>https://github.com/BerkleyLim/Tetris
 ------------------------------
 #### 팀원
 >https://github.com/jisue
