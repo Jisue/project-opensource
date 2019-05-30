@@ -399,25 +399,101 @@ int Game_win(void)
 	}
 }
 
-/*
-int Run(void)
-함수 기능
-: 랜덤한 모양의 블록을 만들고 정의한 함수를 사용하여 블록의 움직임을 관리한다.
-: 게임의 승패 여부를 확인하여 게임을 진행하거나 종료하는 기능이다.
+/*void Move_block(int block)
+함수 인자
+block : 블록의 모양을 결정하는 값을 저장한다.
+함수 기능 : 정의한 함수를 사용하여 블록을 움직인다.
 */
-void Run(void)
+void Move_block(int block)
 {
-
-	int block;
 	int key;
 	int collision_rotation;
 
+	while (1) //블록 이동
+	{
+		int last_line = 0;
+		int block_rotation = 0;
+
+		while (!_kbhit()) //블록 떨어짐
+		{
+			Show_block(block);
+			Sleep(DELAY + speed);
+			if (Detect(block, 0, 1) == 1) //블록 바로 밑에 보드가 있다면
+			{
+				last_line = 1;
+				Board_Conginition(block, 0, 0);
+				Check_line();
+				break;
+			}
+			Remove_block(block, 0, 1);
+		}
+
+		if (last_line == 1)
+		{
+			break;
+		}
+
+		key = _getch();
+		switch (key) //방향 키에 맞게 블록 이동
+		{
+		case LEFT:
+			Remove_block(block, -2, 0);
+			Show_block(block);
+			break;
+		case RIGHT:
+			Remove_block(block, 2, 0);
+			Show_block(block);
+			break;
+		case UP:
+			block_rotation = block / 4; //기본 모양 블록을 구함
+			block_rotation *= 4;
+
+			if ((block + 1) <= (block_rotation + 3)) //회전한 모양 블록을 구함
+			{
+				block_rotation = block + 1;
+			}
+
+			collision_rotation = Detect(block_rotation, 0, 0);
+			if (collision_rotation == 0)
+			{
+				Remove_block(block, 0, 0);
+				block = block_rotation;
+				Show_block(block);
+				break;
+			}
+			break;
+		case DOWN:
+			Remove_block(block, 0, 2);
+			Show_block(block);
+			break;
+		case SPACE:
+			while (1)
+			{
+				Remove_block(block, 0, 1);
+				if (Detect(block, 0, 1) == 1) //블록 바로 밑에 보드가 있다면
+				{
+					Show_block(block);
+					Board_Conginition(block, 0, 0);
+					break;
+				}
+			}
+		}
+	}
+}
+
+/*
+int Run(void)
+함수 기능
+: 랜덤한 모양의 블록을 만들고 게임의 승패 여부를 확인하여 게임을 진행하거나 종료하는 기능이다.
+*/
+void Run(void)
+{
+	int block;
 	srand(time(NULL));
 
 	while (1) //게임 시작~끝
 	{
 		Initial(CBLOCK_X, CBLOCK_Y);
-
 		block = (rand() % 7) * 4;
 
 		if (Game_win())
@@ -434,77 +510,7 @@ void Run(void)
 			getchar();
 			exit(1);
 		}
-
-		while (1) //블록 이동
-		{
-			int last_line = 0;
-			int block_rotation = 0;
-
-			while (!_kbhit()) //블록 떨어짐
-			{
-				Show_block(block);
-				Sleep(DELAY + speed);
-				if (Detect(block, 0, 1) == 1) //블록 바로 밑에 보드가 있다면
-				{
-					last_line = 1;
-					Board_Conginition(block, 0, 0);
-					Check_line();
-					break;
-				}
-				Remove_block(block, 0, 1);
-			}
-
-			if (last_line == 1)
-			{
-				break;
-			}
-
-			key = _getch();
-			switch (key) //방향 키에 맞게 블록 이동
-			{
-			case LEFT:
-				Remove_block(block, -2, 0);
-				Show_block(block);
-				break;
-			case RIGHT:
-				Remove_block(block, 2, 0);
-				Show_block(block);
-				break;
-			case UP:
-				block_rotation = block / 4; //기본 모양 블록을 구함
-				block_rotation *= 4;
-
-				if ((block + 1) <= (block_rotation + 3)) //회전한 모양 블록을 구함
-				{
-					block_rotation = block + 1;
-				}
-
-				collision_rotation = Detect(block_rotation, 0, 0);
-				if (collision_rotation == 0)
-				{
-					Remove_block(block, 0, 0);
-					block = block_rotation;
-					Show_block(block);
-					break;
-				}
-				break;
-			case DOWN:
-				Remove_block(block, 0, 2);
-				Show_block(block);
-				break;
-			case SPACE:
-				while (1)
-				{
-					Remove_block(block, 0, 1);
-					if (Detect(block, 0, 1) == 1) //블록 바로 밑에 보드가 있다면
-					{
-						Show_block(block);
-						Board_Conginition(block, 0, 0);
-						break;
-					}
-				}
-			}
-		}
+		Move_block(block);
 	}
 }
 
