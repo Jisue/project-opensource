@@ -220,17 +220,20 @@ void Set_cursor(int x, int y)
 	COORD pos = { x,y };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
+/*
+COORD Get_cursor(void)
+함수기능: 커서의 좌표 정보를 얻어온다.
+*/
 COORD Get_cursor(void)
 {
-   COORD cur;
-   CONSOLE_SCREEN_BUFFER_INFO curInfo;
+	COORD cur; 
+	CONSOLE_SCREEN_BUFFER_INFO curInfo;
 
-   GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
-   cur.X = curInfo.dwCursorPosition.X;
-   cur.Y = curInfo.dwCursorPosition.Y;
-   return cur;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
+	cur.X = curInfo.dwCursorPosition.X;
+	cur.Y = curInfo.dwCursorPosition.Y;
+	return cur;
 }
-//void showBlock(int rotation);
 
 void Show_board(void)
 {
