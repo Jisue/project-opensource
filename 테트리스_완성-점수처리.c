@@ -297,31 +297,36 @@ void Initial(int x, int y)
    Set_cursor(x, y);
 }
 
-//removeBlock함수 작동전 벽인 or 아닌지확인
+/*
+int Detect(int block, int move1, int move2)
+함수 인자 기능
+block: 블록의 모양을 결정하는 값을 저장한다.
+move1: x축으로 블록을 움직일 값을 저장한다.
+move2: y축으로 블록을 움직일 값을 저장한다.
+함수기능: 블록을 움직이면 벽과 충돌하는지 확인한다.
+*/
 int Detect(int block, int move1, int move2)
 {
-   int x, y;
-   int arrX, arrY; //배열좌표저장
-   COORD pos = Get_cursor();
+	int x, y;
+	int arrX, arrY;
+	COORD pos = Get_cursor();
 
-   arrX = pos.X + move1;
-   arrY = pos.Y + move2;
+	arrX = pos.X + move1;
+	arrY = pos.Y + move2;
 
-   arrX = (arrX / 2) - 2;
-   arrY = arrY - BOARD_Y;
+	arrX = (arrX / 2) - 2;
+	arrY = arrY - BOARD_Y;
 
 
-   for (y = 0; y < 4; y++)
-   {
-      for (x = 0; x < 4; x++)
-      {
-         if ((block_array[block][y][x] == 1) && board[arrY + y][arrX + x] == 1)
-         {
-            return 1;  //보드와 벽돌 겹침
-         }
-      }
-   }
-   return 0;  //겹치지 않음
+	for (y = 0; y < 4; y++)
+	{
+		for (x = 0; x < 4; x++)
+		{
+			if ((block_array[block][y][x] == 1) && board[arrY + y][arrX + x] == 1)
+				return 1; //보드와 블록이 충돌함 
+		}
+	}
+	return 0;  //보드와 블록이 충돌하지 않음
 
 }
 
