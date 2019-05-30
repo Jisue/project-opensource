@@ -1,5 +1,3 @@
-
-
 #include <stdio.h>
 #include <windows.h>
 #include <stdlib.h> //
@@ -314,7 +312,7 @@ void Show_block(int block)
 	int x, y;
 	COORD cursor = Get_cursor();
 	int collision;
-	
+
 	collision = Detect(block, 0, 0); // 벽과 충돌하는지 검사
 	if (collision == 0)
 	{
@@ -367,7 +365,7 @@ void Remove_block(int block, int move1, int move2)
 
 /*
 void Board_Conginition(int n, int move1, int move2)
-함수 기능: 블록이 이동할 자리의 배열 값을 1로 바꿔주는 함수이다. 
+함수 기능: 블록이 이동할 자리의 배열 값을 1로 바꿔주는 함수이다.
 */
 void Board_Conginition(int n, int move1, int move2) //블록모양을 결정하는 int형 변수 n, 좌우 움직임을 표현하는 int형 변수 move1,move2
 {
@@ -398,7 +396,7 @@ void Board_Conginition(int n, int move1, int move2) //블록모양을 결정하는 int형 
 
 /*
 void Array_down(int column)
-함수 기능: int형 변수 colum을 인자로 받아서 colum을 기준으로 블록배열을 밑으로 한 칸 이동시켜주는 함수이다. 
+함수 기능: int형 변수 colum을 인자로 받아서 colum을 기준으로 블록배열을 밑으로 한 칸 이동시켜주는 함수이다.
 */
 void Array_down(int column)
 {
@@ -443,7 +441,7 @@ void Print_scorelevel(void)
 void Print_scorelevel(void)
 {
 	Set_cursor(40, 3);
-	printf("★레벨10 게임 클리어★"); 
+	printf("★레벨10 게임 클리어★");
 	Set_cursor(40, 5);
 	printf("레벨:%d\n", level); //레벨 출력
 	Set_cursor(40, 7);
@@ -486,11 +484,11 @@ void Check_line(void)
 				{
 					for (x = 1; x < 11; x++) //해당 행 삭제
 					{
-						setCursor((x + 2) * 2, y + 2);
+						Set_cursor((x + 2) * 2, y + 2);
 						printf("  ");
 					}
-					countScore();
-					array_down(y);
+					Count_score();
+					Array_down(y);
 				}
 
 			}
@@ -502,7 +500,7 @@ int Game_over(int block)
 {
 	if (Detect(block, 0, 0))
 	{
-		return 5; //게임 끝
+		return 5; //게임 오버
 	}
 	else
 	{
