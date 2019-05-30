@@ -644,9 +644,9 @@ void Run(void)
 
 int main()
 {
-	Remove_cursor(); //커서 깜박이 제거
-	Show_board(); //보드 출력
+	Remove_cursor();
+	Show_board();
 	Print_scorelevel();
-	Run(); //보드 출력 움직임
+	Run();
 	getchar();
 }
