@@ -26,171 +26,171 @@ int static speed = 180;
 int curX, curY;
 int board[BOARD_HEIGHT + 1][BOARD_WIDTH + 2] = { 0, };
 int block_array[][4][4] = {
-   /*■
-     ■■■*/
-   {
-      {0,0,0,0},
-      {1,0,0,0},
-      {1,1,1,0},
-      {0,0,0,0}},
-   {
-      {0,0,1,0},
-      {0,0,1,0},
-      {0,1,1,0},
-      {0,0,0,0}},
-   {
-      {1,1,1,0},
-      {0,0,1,0},
-      {0,0,0,0},
-      {0,0,0,0}},
-   {
-      {1,1,0,0},
-      {1,0,0,0},
-      {1,0,0,0},
-      {0,0,0,0}},
-      /* 두 번째 블록
-          ■
-       ■■■     */
-   {
-      {0, 0, 0, 0},
-      {0, 0, 1, 0},
-      {1, 1, 1, 0},
-      {0, 0, 0, 0} },
-   {
-      {0, 1, 1, 0},
-      {0, 0, 1, 0},
-      {0, 0, 1, 0},
-      {0, 0, 0, 0} },
-   {
-      {1, 1, 1, 0},
-      {1, 0, 0, 0},
-      {0, 0, 0, 0},
-      {0, 0, 0, 0} },
-   {
-      {1, 0, 0, 0},
-      {1, 0, 0, 0},
-      {1, 1, 0, 0},
-      {0, 0, 0, 0} },
+	/*■
+	  ■■■*/
+	{
+	   {0,0,0,0},
+	   {1,0,0,0},
+	   {1,1,1,0},
+	   {0,0,0,0}},
+	{
+	   {0,0,1,0},
+	   {0,0,1,0},
+	   {0,1,1,0},
+	   {0,0,0,0}},
+	{
+	   {1,1,1,0},
+	   {0,0,1,0},
+	   {0,0,0,0},
+	   {0,0,0,0}},
+	{
+	   {1,1,0,0},
+	   {1,0,0,0},
+	   {1,0,0,0},
+	   {0,0,0,0}},
+	   /* 두 번째 블록
+		   ■
+		■■■     */
+	{
+	   {0, 0, 0, 0},
+	   {0, 0, 1, 0},
+	   {1, 1, 1, 0},
+	   {0, 0, 0, 0} },
+	{
+	   {0, 1, 1, 0},
+	   {0, 0, 1, 0},
+	   {0, 0, 1, 0},
+	   {0, 0, 0, 0} },
+	{
+	   {1, 1, 1, 0},
+	   {1, 0, 0, 0},
+	   {0, 0, 0, 0},
+	   {0, 0, 0, 0} },
+	{
+	   {1, 0, 0, 0},
+	   {1, 0, 0, 0},
+	   {1, 1, 0, 0},
+	   {0, 0, 0, 0} },
 
-      /* 세 번째 블록
-            ■
-           ■■■    */
-      {
-         {0, 0, 0, 0},
-         {0, 1, 0, 0},
-         {1, 1, 1, 0},
-         {0, 0, 0, 0} },
-      {
-         {0, 0, 0, 0},
-         {0, 1, 0, 0},
-         {1, 1, 0, 0},
-         {0, 1, 0, 0} },
-      {
-         {0, 0, 0, 0},
-         {0, 0, 0, 0},
-         {1, 1, 1, 0},
-         {0, 1, 0, 0} },
-      {
-         {0, 0, 0, 0},
-         {0, 1, 0, 0},
-         {0, 1, 1, 0},
-         {0, 1, 0, 0} },
+	   /* 세 번째 블록
+			 ■
+			■■■    */
+	   {
+		  {0, 0, 0, 0},
+		  {0, 1, 0, 0},
+		  {1, 1, 1, 0},
+		  {0, 0, 0, 0} },
+	   {
+		  {0, 0, 0, 0},
+		  {0, 1, 0, 0},
+		  {1, 1, 0, 0},
+		  {0, 1, 0, 0} },
+	   {
+		  {0, 0, 0, 0},
+		  {0, 0, 0, 0},
+		  {1, 1, 1, 0},
+		  {0, 1, 0, 0} },
+	   {
+		  {0, 0, 0, 0},
+		  {0, 1, 0, 0},
+		  {0, 1, 1, 0},
+		  {0, 1, 0, 0} },
 
-         /* 네 번째 블록
-              ■■■■   */
-         {
-            {0, 1, 0, 0},
-            {0, 1, 0, 0},
-            {0, 1, 0, 0},
-            {0, 1, 0, 0} },
-         {
-            {0, 0, 0, 0},
-            {0, 0, 0, 0},
-            {1, 1, 1, 1},
-            {0, 0, 0, 0} },
-         {
-            {0, 1, 0, 0},
-            {0, 1, 0, 0},
-            {0, 1, 0, 0},
-            {0, 1, 0, 0} },
-         {
-            {0, 0, 0, 0},
-            {0, 0, 0, 0},
-            {1, 1, 1, 1},
-            {0, 0, 0, 0} },
+		  /* 네 번째 블록
+			   ■■■■   */
+		  {
+			 {0, 1, 0, 0},
+			 {0, 1, 0, 0},
+			 {0, 1, 0, 0},
+			 {0, 1, 0, 0} },
+		  {
+			 {0, 0, 0, 0},
+			 {0, 0, 0, 0},
+			 {1, 1, 1, 1},
+			 {0, 0, 0, 0} },
+		  {
+			 {0, 1, 0, 0},
+			 {0, 1, 0, 0},
+			 {0, 1, 0, 0},
+			 {0, 1, 0, 0} },
+		  {
+			 {0, 0, 0, 0},
+			 {0, 0, 0, 0},
+			 {1, 1, 1, 1},
+			 {0, 0, 0, 0} },
 
-            /* 다섯 번째 블록
-                 ■■
-                 ■■      */
-            {
-               {1, 1, 0, 0},
-               {1, 1, 0, 0},
-               {0, 0, 0, 0},
-               {0, 0, 0, 0} },
-            {
-               {1, 1, 0, 0},
-               {1, 1, 0, 0},
-               {0, 0, 0, 0},
-               {0, 0, 0, 0} },
-            {
-               {1, 1, 0, 0},
-               {1, 1, 0, 0},
-               {0, 0, 0, 0},
-               {0, 0, 0, 0} },
-            {
-               {1, 1, 0, 0},
-               {1, 1, 0, 0},
-               {0, 0, 0, 0},
-               {0, 0, 0, 0} },
+			 /* 다섯 번째 블록
+				  ■■
+				  ■■      */
+			 {
+				{1, 1, 0, 0},
+				{1, 1, 0, 0},
+				{0, 0, 0, 0},
+				{0, 0, 0, 0} },
+			 {
+				{1, 1, 0, 0},
+				{1, 1, 0, 0},
+				{0, 0, 0, 0},
+				{0, 0, 0, 0} },
+			 {
+				{1, 1, 0, 0},
+				{1, 1, 0, 0},
+				{0, 0, 0, 0},
+				{0, 0, 0, 0} },
+			 {
+				{1, 1, 0, 0},
+				{1, 1, 0, 0},
+				{0, 0, 0, 0},
+				{0, 0, 0, 0} },
 
 
-               /* 여섯 번째 블록
-                     ■■
-                    ■■      */
-               {
-                  {0, 0, 0, 0},
-                  {0, 1, 1, 0},
-                  {1, 1, 0, 0},
-                  {0, 0, 0, 0} },
-               {
-                  {0, 1, 0, 0},
-                  {0, 1, 1, 0},
-                  {0, 0, 1, 0},
-                  {0, 0, 0, 0} },
-               {
-                  {0, 0, 0, 0},
-                  {0, 1, 1, 0},
-                  {1, 1, 0, 0},
-                  {0, 0, 0, 0} },
-               {
-                  {0, 1, 0, 0},
-                  {0, 1, 1, 0},
-                  {0, 0, 1, 0},
-                  {0, 0, 0, 0} },
+				/* 여섯 번째 블록
+					  ■■
+					 ■■      */
+				{
+				   {0, 0, 0, 0},
+				   {0, 1, 1, 0},
+				   {1, 1, 0, 0},
+				   {0, 0, 0, 0} },
+				{
+				   {0, 1, 0, 0},
+				   {0, 1, 1, 0},
+				   {0, 0, 1, 0},
+				   {0, 0, 0, 0} },
+				{
+				   {0, 0, 0, 0},
+				   {0, 1, 1, 0},
+				   {1, 1, 0, 0},
+				   {0, 0, 0, 0} },
+				{
+				   {0, 1, 0, 0},
+				   {0, 1, 1, 0},
+				   {0, 0, 1, 0},
+				   {0, 0, 0, 0} },
 
-                  /* 일곱 번째 블록
-                       ■■
-                        ■■    */
-                  {
-                     {0, 0, 0, 0},
-                     {1, 1, 0, 0},
-                     {0, 1, 1, 0},
-                     {0, 0, 0, 0} },
-                  {
-                     {0, 0, 1, 0},
-                     {0, 1, 1, 0},
-                     {0, 1, 0, 0},
-                     {0, 0, 0, 0} },
-                  {
-                     {0, 0, 0, 0},
-                     {1, 1, 0, 0},
-                     {0, 1, 1, 0},
-                     {0, 0, 0, 0} },
-                  {
-                     {0, 0, 1, 0},
-                     {0, 1, 1, 0},
-                     {0, 1, 0, 0},
-                     {0, 0, 0, 0} },
+				   /* 일곱 번째 블록
+						■■
+						 ■■    */
+				   {
+					  {0, 0, 0, 0},
+					  {1, 1, 0, 0},
+					  {0, 1, 1, 0},
+					  {0, 0, 0, 0} },
+				   {
+					  {0, 0, 1, 0},
+					  {0, 1, 1, 0},
+					  {0, 1, 0, 0},
+					  {0, 0, 0, 0} },
+				   {
+					  {0, 0, 0, 0},
+					  {1, 1, 0, 0},
+					  {0, 1, 1, 0},
+					  {0, 0, 0, 0} },
+				   {
+					  {0, 0, 1, 0},
+					  {0, 1, 1, 0},
+					  {0, 1, 0, 0},
+					  {0, 0, 0, 0} },
 
 };
 /*
@@ -199,10 +199,10 @@ void Remove_cursor(void)
 */
 void Remove_cursor(void)
 {
-   CONSOLE_CURSOR_INFO curInfo;
-   GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
-   curInfo.bVisible = 0;
-   SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
+	CONSOLE_CURSOR_INFO curInfo;
+	GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
+	curInfo.bVisible = 0;
+	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
 }
 
 /*
@@ -214,8 +214,8 @@ y: 커서 좌표의 y 값을 저장한다.
 */
 void Set_cursor(int x, int y)
 {
-   COORD pos = { x,y };
-   SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	COORD pos = { x,y };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 /*
 COORD Get_cursor(void)
@@ -223,13 +223,13 @@ COORD Get_cursor(void)
 */
 COORD Get_cursor(void)
 {
-   COORD cur; 
-   CONSOLE_SCREEN_BUFFER_INFO curInfo;
+	COORD cur;
+	CONSOLE_SCREEN_BUFFER_INFO curInfo;
 
-   GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
-   cur.X = curInfo.dwCursorPosition.X;
-   cur.Y = curInfo.dwCursorPosition.Y;
-   return cur;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);
+	cur.X = curInfo.dwCursorPosition.X;
+	cur.Y = curInfo.dwCursorPosition.Y;
+	return cur;
 }
 
 /*
@@ -238,47 +238,47 @@ void Show_board(void)
 */
 void Show_board(void)
 {
-   int x, y;
+	int x, y;
 
-   for (x = 1; x <= BOARD_WIDTH + 1; x++) //위 아래 보드 출력
-   {
-      board[BOARD_HEIGHT][x] = 1;  
-      Set_cursor((BOARD_X)+x * 2, BOARD_Y + BOARD_HEIGHT);
-      printf("━");
-   }
-   
-   for (y = 0; y < BOARD_HEIGHT + 1; y++) //왼쪽 보드와 모서리 출력
-   {
-      board[y][0] = 1;
-      Set_cursor(BOARD_X, BOARD_Y + y);
-      if (y == BOARD_HEIGHT) //모서리
-      {
-         printf("┗");
-      }
-      else
-      {
-         printf("┃"); //왼쪽
-      }
-   }
-   //오른쪽 보드와 모서리 출력
-   for (y = 0; y < BOARD_HEIGHT + 1; y++) //오른쪽 보드와 모서리 출력
-   {
-      board[y][BOARD_WIDTH + 1] = 1;
-      Set_cursor(BOARD_X + (BOARD_WIDTH + 2) * 2, BOARD_Y + y);
-      if (y == BOARD_HEIGHT)
-      {
-         printf("┛"); //모서리
-      }
-      else
-      {
-         printf("┃"); //오른쪽
-      }
-   }
+	for (x = 1; x <= BOARD_WIDTH + 1; x++) //위 아래 보드 출력
+	{
+		board[BOARD_HEIGHT][x] = 1;
+		Set_cursor((BOARD_X)+x * 2, BOARD_Y + BOARD_HEIGHT);
+		printf("━");
+	}
 
-   board[20][0] = 1;
-   board[20][11] = 1;
+	for (y = 0; y < BOARD_HEIGHT + 1; y++) //왼쪽 보드와 모서리 출력
+	{
+		board[y][0] = 1;
+		Set_cursor(BOARD_X, BOARD_Y + y);
+		if (y == BOARD_HEIGHT) //모서리
+		{
+			printf("┗");
+		}
+		else
+		{
+			printf("┃"); //왼쪽
+		}
+	}
+	//오른쪽 보드와 모서리 출력
+	for (y = 0; y < BOARD_HEIGHT + 1; y++) //오른쪽 보드와 모서리 출력
+	{
+		board[y][BOARD_WIDTH + 1] = 1;
+		Set_cursor(BOARD_X + (BOARD_WIDTH + 2) * 2, BOARD_Y + y);
+		if (y == BOARD_HEIGHT)
+		{
+			printf("┛"); //모서리
+		}
+		else
+		{
+			printf("┃"); //오른쪽
+		}
+	}
 
-   puts(" ");
+	board[20][0] = 1;
+	board[20][11] = 1;
+
+	puts(" ");
 }
 /*
 void Initial(int x, int y)
@@ -289,9 +289,9 @@ y: 커서 좌표의 y 값을 저장한다.
 */
 void Initial(int x, int y)
 {
-   curX = x;
-   curY = y;
-   Set_cursor(x, y);
+	curX = x;
+	curY = y;
+	Set_cursor(x, y);
 }
 
 /*
@@ -304,26 +304,26 @@ move2: y축으로 블록을 움직일 값을 저장한다.
 */
 int Detect(int block, int move1, int move2)
 {
-   int x, y;
-   int arrX, arrY;
-   COORD pos = Get_cursor();
+	int x, y;
+	int arrX, arrY;
+	COORD pos = Get_cursor();
 
-   arrX = pos.X + move1;
-   arrY = pos.Y + move2;
+	arrX = pos.X + move1;
+	arrY = pos.Y + move2;
 
-   arrX = (arrX / 2) - 2;
-   arrY = arrY - BOARD_Y;
+	arrX = (arrX / 2) - 2;
+	arrY = arrY - BOARD_Y;
 
 
-   for (y = 0; y < 4; y++)
-   {
-      for (x = 0; x < 4; x++)
-      {
-         if ((block_array[block][y][x] == 1) && board[arrY + y][arrX + x] == 1)
-            return 1; //보드와 블록이 충돌함 
-      }
-   }
-   return 0;  //보드와 블록이 충돌하지 않음
+	for (y = 0; y < 4; y++)
+	{
+		for (x = 0; x < 4; x++)
+		{
+			if ((block_array[block][y][x] == 1) && board[arrY + y][arrX + x] == 1)
+				return 1; //보드와 블록이 충돌함 
+		}
+	}
+	return 0;  //보드와 블록이 충돌하지 않음
 
 }
 
@@ -335,27 +335,27 @@ blcok: 블록의 모양을 결정하는 값을 저장한다.
 */
 void Show_block(int block)
 {
-   int x, y;
-   COORD cursor = Get_cursor();
-   int collision;
+	int x, y;
+	COORD cursor = Get_cursor();
+	int collision;
 
-   collision = Detect(block, 0, 0); //벽과 충돌하는지 검사
-   if (collision == 0)
-   {
-      //콘솔창위치 설정
-      for (y = 0; y < 4; y++)
-      {
-         for (x = 0; x < 4; x++)
-         {
-            Set_cursor(cursor.X + (x * 2), cursor.Y + y);
-            if (block_array[block][y][x] == 1) //해당 배열에 블록이 있으면 ■ 출력함으로써 모양에 맞는 블록을 출력
-            {
-               printf("■");
-            }
-         }
-      }
-      Set_cursor(cursor.X, cursor.Y);
-   }
+	collision = Detect(block, 0, 0); //벽과 충돌하는지 검사
+	if (collision == 0)
+	{
+		//콘솔창위치 설정
+		for (y = 0; y < 4; y++)
+		{
+			for (x = 0; x < 4; x++)
+			{
+				Set_cursor(cursor.X + (x * 2), cursor.Y + y);
+				if (block_array[block][y][x] == 1) //해당 배열에 블록이 있으면 ■ 출력함으로써 모양에 맞는 블록을 출력
+				{
+					printf("■");
+				}
+			}
+		}
+		Set_cursor(cursor.X, cursor.Y);
+	}
 }
 
 /*
@@ -368,29 +368,29 @@ move2: y축으로 블록을 움직일 값을 저장한다.
 */
 void Remove_block(int block, int move1, int move2)
 {
-   int collision;
-   int x, y;
+	int collision;
+	int x, y;
 
-   COORD cursor = Get_cursor();
+	COORD cursor = Get_cursor();
 
-   collision = Detect(block, move1, move2); //블록을 이동시킬 곳이 보드과 충돌하는지 검사
+	collision = Detect(block, move1, move2); //블록을 이동시킬 곳이 보드과 충돌하는지 검사
 
-   if (collision == 0)
-   {
-      //콘솔창위치 설정
-      for (y = 0; y < 4; y++)
-      {
-         for (x = 0; x < 4; x++)
-         {
-            Set_cursor(cursor.X + (x * 2), cursor.Y + y);
-            if (block_array[block][y][x] == 1) //해당 배열에 블록이 있었으면 공백을 출력하여 블록을 지워줌
-            {
-               printf(" ");
-            }
-         }
-      }
-      Set_cursor(cursor.X + move1, cursor.Y + move2);
-   }
+	if (collision == 0)
+	{
+		//콘솔창위치 설정
+		for (y = 0; y < 4; y++)
+		{
+			for (x = 0; x < 4; x++)
+			{
+				Set_cursor(cursor.X + (x * 2), cursor.Y + y);
+				if (block_array[block][y][x] == 1) //해당 배열에 블록이 있었으면 공백을 출력하여 블록을 지워줌
+				{
+					printf(" ");
+				}
+			}
+		}
+		Set_cursor(cursor.X + move1, cursor.Y + move2);
+	}
 }
 
 /*
@@ -403,28 +403,28 @@ move2: y축으로 블록을 움직일 값을 저장한다.
 */
 void Board_Conginition(int n, int move1, int move2)
 {
-   COORD pos = Get_cursor();
+	COORD pos = Get_cursor();
 
-   int arrX = pos.X + move1; //콘솔 좌표 열
-   int arrY = pos.Y + move2; //콘솔 좌표 행
-   int x, y;
+	int arrX = pos.X + move1; //콘솔 좌표 열
+	int arrY = pos.Y + move2; //콘솔 좌표 행
+	int x, y;
 
-   //커서위치정보를 배열위치정보 변경
-   arrX = arrX / 2 - 2; //배열 열 변환 값
-   arrY = arrY - 2; //배열 행 변환 값
+	//커서위치정보를 배열위치정보 변경
+	arrX = arrX / 2 - 2; //배열 열 변환 값
+	arrY = arrY - 2; //배열 행 변환 값
 
-   //콘솔창위치 설정
-   for (y = 0; y < 4; y++)
-   {
-      for (x = 0; x < 4; x++)
-      {
-         if (block_array[n][y][x] == 1) //보드판에서 블록 이동시 배열에 블록이 있는지 인식해서 바꿈
-         {
-            board[arrY + y][arrX + x] = 1;
-         }
-      }
-   }
-   return;
+	//콘솔창위치 설정
+	for (y = 0; y < 4; y++)
+	{
+		for (x = 0; x < 4; x++)
+		{
+			if (block_array[n][y][x] == 1) //보드판에서 블록 이동시 배열에 블록이 있는지 인식해서 바꿈
+			{
+				board[arrY + y][arrX + x] = 1;
+			}
+		}
+	}
+	return;
 
 }
 
@@ -436,38 +436,38 @@ colum: 행 값을 저장한다.
 */
 void Array_down(int column)
 {
-   int y, x;
+	int y, x;
 
-   //board배열 값을 행기준으로 밑으로 이동
-   for (y = column; y >= 0; y--)
-   {
-      for (x = 1; x <= 10; x++)
-      {
-         board[y][x] = board[y - 1][x];
-      }
-   }
-   //1행 당겨졌으므로 전의 블록 마지막줄을 비움. 
-   for (x = 1; x <= 10; x++)
-   {
-      board[0][x] = 0;
-   }
+	//board배열 값을 행기준으로 밑으로 이동
+	for (y = column; y >= 0; y--)
+	{
+		for (x = 1; x <= 10; x++)
+		{
+			board[y][x] = board[y - 1][x];
+		}
+	}
+	//1행 당겨졌으므로 전의 블록 마지막줄을 비움. 
+	for (x = 1; x <= 10; x++)
+	{
+		board[0][x] = 0;
+	}
 
-   //board배열의 출력
-   for (y = 1; y <= 19; y++) //19행부터 1행까지 검사
-   {
-      for (x = 1; x <= 10; x++)//1열부터 10열까지 검사
-      {
-         Set_cursor((BOARD_X)+x * 2 + 1, y + BOARD_Y);
-         if (board[y][x] == 1) //배열에 블록이있으면 ■출력
-         {
-            printf("■");
-         }
-         else
-         {
-            printf("  ");
-         }
-      }
-   }
+	//board배열의 출력
+	for (y = 1; y <= 19; y++) //19행부터 1행까지 검사
+	{
+		for (x = 1; x <= 10; x++)//1열부터 10열까지 검사
+		{
+			Set_cursor((BOARD_X)+x * 2 + 1, y + BOARD_Y);
+			if (board[y][x] == 1) //배열에 블록이있으면 ■출력
+			{
+				printf("■");
+			}
+			else
+			{
+				printf("  ");
+			}
+		}
+	}
 
 }
 /*
@@ -476,12 +476,12 @@ void Print_scorelevel(void)
 */
 void Print_scorelevel(void)
 {
-   Set_cursor(40, 3);
-   printf("★레벨10 게임 클리어★");
-   Set_cursor(40, 5);
-   printf("레벨:%d\n", level); //레벨 출력
-   Set_cursor(40, 7);
-   printf("점수:%d\n", score); //점수 출력
+	Set_cursor(40, 3);
+	printf("★레벨10 게임 클리어★");
+	Set_cursor(40, 5);
+	printf("레벨:%d\n", level); //레벨 출력
+	Set_cursor(40, 7);
+	printf("점수:%d\n", score); //점수 출력
 }
 
 /*
@@ -490,13 +490,13 @@ void Count_score(void)
 */
 void Count_score(void)
 {
-   score += 10;
-   if (score % 30 == 0) //점수가 30점 오를때마다 레벨과 속도 변경.
-   {
-      level += 1;
-      speed -= 30; //레벨이 올라가면 블록이 떨어지는 속도를 증가함.
-   }
-   Print_scorelevel();
+	score += 10;
+	if (score % 30 == 0) //점수가 30점 오를때마다 레벨과 속도 변경.
+	{
+		level += 1;
+		speed -= 30; //레벨이 올라가면 블록이 떨어지는 속도를 증가함.
+	}
+	Print_scorelevel();
 }
 
 /*
@@ -505,31 +505,31 @@ void Check_line(void)
 */
 void Check_line(void)
 {
-   int block_num;
-   int x, y;
+	int block_num;
+	int x, y;
 
-   for (y = 19; y >= 1; y--) //19행부터 1행까지 검사
-   {
-      block_num = 0;
-      for (x = 1; x < 11; x++) //1열부터 10열까지 검사
-      {
-         if (board[y][x] == 1)
-         {
-            block_num++;
-            if (block_num == 10) //빈틈없는 행이 있으면
-            {
-               for (x = 1; x < 11; x++) //해당 행 삭제
-               {
-                  Set_cursor((x + 2) * 2, y + 2);
-                  printf("  ");
-               }
-               Count_score();
-               Array_down(y);
-            }
+	for (y = 19; y >= 1; y--) //19행부터 1행까지 검사
+	{
+		block_num = 0;
+		for (x = 1; x < 11; x++) //1열부터 10열까지 검사
+		{
+			if (board[y][x] == 1)
+			{
+				block_num++;
+				if (block_num == 10) //빈틈없는 행이 있으면
+				{
+					for (x = 1; x < 11; x++) //해당 행 삭제
+					{
+						Set_cursor((x + 2) * 2, y + 2);
+						printf("  ");
+					}
+					Count_score();
+					Array_down(y);
+				}
 
-         }
-      }
-   }
+			}
+		}
+	}
 }
 
 /*
@@ -539,14 +539,14 @@ int Game_over(int block)
 */
 int Game_over(int block)
 {
-   if (Detect(block, 0, 0))
-   {
-      return 5; //게임 오버
-   }
-   else
-   {
-      return 0;
-   }
+	if (Detect(block, 0, 0))
+	{
+		return 5; //게임 오버
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 /*
@@ -555,130 +555,136 @@ int Game_win(void)
 */
 int Game_win(void)
 {
-   if (level == 10)
-   {
-      return 1; //게임 승리
-   }
-   else
-   {
-      return 0;
-   }
+	if (level == 10)
+	{
+		return 1; //게임 승리
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+/*
+int Move_block(int block)
+함수 인자
+block: 블록의 모양을 결정하는 값을 저장한다.
+함수 기능: 정의한 함수를 사용하여 블록을 움직인다.
+*/
+int Move_block(int block) {
+	int key;
+	int collision_rotation;
+
+	while (1) //블록 이동
+	{
+		int last_line = 0;
+		int block_rotation = 0;
+
+		while (!_kbhit()) //블록 떨어짐
+		{
+			Show_block(block);
+			Sleep(DELAY + speed);
+			if (Detect(block, 0, 1) == 1) //블록 바로 밑에 보드가 있다면
+			{
+				last_line = 1;
+				Board_Conginition(block, 0, 0);
+				Check_line();
+				break;
+			}
+			Remove_block(block, 0, 1);
+		}
+
+		if (last_line == 1)
+		{
+			break;
+		}
+
+		key = _getch();
+		switch (key) //방향 키에 맞게 블록 이동
+		{
+		case LEFT:
+			Remove_block(block, -2, 0);
+			Show_block(block);
+			break;
+		case RIGHT:
+			Remove_block(block, 2, 0);
+			Show_block(block);
+			break;
+		case UP:
+			block_rotation = block / 4; //기본 모양 블록을 구함
+			block_rotation *= 4;
+
+			if ((block + 1) <= (block_rotation + 3)) //회전한 모양 블록을 구함
+			{
+				block_rotation = block + 1;
+			}
+
+			collision_rotation = Detect(block_rotation, 0, 0);
+			if (collision_rotation == 0)
+			{
+				Remove_block(block, 0, 0);
+				block = block_rotation;
+				Show_block(block);
+				break;
+			}
+			break;
+		case DOWN:
+			Remove_block(block, 0, 2);
+			Show_block(block);
+			break;
+		case SPACE:
+			while (1)
+			{
+				Remove_block(block, 0, 1);
+				if (Detect(block, 0, 1) == 1) //블록 바로 밑에 보드가 있다면
+				{
+					Show_block(block);
+					Board_Conginition(block, 0, 0);
+					break;
+				}
+			}
+		}
+	}
 }
 
 /*
 int Run(void)
 함수 기능
-: 랜덤한 모양의 블록을 만들고 정의한 함수를 사용하여 블록의 움직임을 관리한다.
-: 게임의 승패 여부를 확인하여 게임을 진행하거나 종료하는 기능이다.
+: 랜덤한 모양의 블록을 만들고 게임의 승패 여부를 확인하여 게임을 진행하거나 종료하는 기능이다.
 */
 void Run(void)
 {
+	int block;
+	srand(time(NULL));
 
-   int block;
-   int key;
-   int collision_rotation;
+	while (1) //게임 시작~끝
+	{
+		Initial(CBLOCK_X, CBLOCK_Y);
+		block = (rand() % 7) * 4;
 
-   srand(time(NULL));
-
-   while (1) //게임 시작~끝
-   {
-      Initial(CBLOCK_X, CBLOCK_Y); 
-
-      block = (rand() % 7) * 4;
-
-      if (Game_win())
-      {
-         Set_cursor(35, 20);
-         printf("GAME WIN");
-         getchar();
-         exit(1);
-      }
-      if (Game_over(block))
-      {
-         Set_cursor(35, 20);
-         printf("GAME OVER");
-         getchar();
-         exit(1);
-      }
-
-      while (1) //블록 이동
-      {
-         int last_line = 0;
-         int block_rotation = 0;
-
-         while (!_kbhit()) //블록 떨어짐
-         {
-            Show_block(block);
-            Sleep(DELAY + speed);
-            if (Detect(block, 0, 1) == 1) //블록 바로 밑에 보드가 있다면
-            {
-               last_line = 1;
-               Board_Conginition(block, 0, 0);
-               Check_line();
-               break;
-            }
-            Remove_block(block, 0, 1);
-         }
-
-         if (last_line == 1)
-         {
-            break;
-         }
-
-         key = _getch();
-         switch (key) //방향 키에 맞게 블록 이동
-         {
-         case LEFT:
-            Remove_block(block, -2, 0);
-            Show_block(block);
-            break;
-         case RIGHT:
-            Remove_block(block, 2, 0);
-            Show_block(block);
-            break;
-         case UP:
-            block_rotation = block / 4; //기본 모양 블록을 구함
-            block_rotation *= 4;
-
-            if ((block + 1) <= (block_rotation + 3)) //회전한 모양 블록을 구함
-            {
-               block_rotation = block + 1;
-            }
-
-            collision_rotation = Detect(block_rotation, 0, 0);
-            if (collision_rotation == 0)
-            {
-               Remove_block(block, 0, 0);
-               block = block_rotation;
-               Show_block(block);
-               break;
-            }
-            break;
-         case DOWN:
-            Remove_block(block, 0, 2);
-            Show_block(block);
-            break;
-         case SPACE:
-            while (1)
-            {
-               Remove_block(block, 0, 1);
-               if (Detect(block, 0, 1) == 1) //블록 바로 밑에 보드가 있다면
-               {
-                  Show_block(block);
-                  Board_Conginition(block, 0, 0);
-                  break;
-               }
-            }
-         }
-      }
-   }
+		if (Game_win())
+		{
+			Set_cursor(35, 20);
+			printf("GAME WIN");
+			getchar();
+			exit(1);
+		}
+		if (Game_over(block))
+		{
+			Set_cursor(35, 20);
+			printf("GAME OVER");
+			getchar();
+			exit(1);
+		}
+		Move_block(block);
+	}
 }
 
 int main()
 {
-   Remove_cursor();
-   Show_board();
-   Print_scorelevel();
-   Run();
-   getchar();
+	Remove_cursor();
+	Show_board();
+	Print_scorelevel();
+	Run();
+	getchar();
 }
