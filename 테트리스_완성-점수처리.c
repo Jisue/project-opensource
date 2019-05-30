@@ -529,6 +529,12 @@ int Game_win(void)
 	}
 }
 
+/*
+int Run(void)
+함수 기능
+: 랜덤한 모양의 블록을 만들고 정의한 함수를 사용하여 블록의 움직임을 관리한다.
+: 게임의 승패 여부를 확인하여 게임을 진행하거나 종료하는 기능이다.
+*/
 void Run(void)
 {
 
@@ -538,14 +544,13 @@ void Run(void)
 
 	srand(time(NULL));
 
-	/*게임 시작~끝*/
-	while (1)
+	while (1) //게임 시작~끝
 	{
-		Initial(CBLOCK_X, CBLOCK_Y); //블록 생성 위치 좌표 
+		Initial(CBLOCK_X, CBLOCK_Y); 
 
-		block = (rand() % RAND) * 4;//난수생성
+		block = (rand() % RAND) * 4; //블록 모양 결정
 		block = rand() % RAND;
-		block = rand() % 7;//블록 모양 결정
+		block = rand() % 7;
 		block = block * 4;
 		block = 6;
 
@@ -564,38 +569,32 @@ void Run(void)
 			exit(1);
 		}
 
-		/*블록 한개 위~밑 이동*/
-		while (1)
+		while (1) //블록 이동
 		{
 			int last_line = 0;
 			int block_rotation = 0;
 
-			/*블록 아래로 이동*/
-			while (!_kbhit())
+			while (!_kbhit()) //블록 떨어짐
 			{
-				//블록 쇼
 				Show_block(block);
-				//딜레이 타임
 				Sleep(DELAY + speed);
-				//아래이동시 1있느지 확인
-				if (Detect(block, 0, 1) == 1)
+				if (Detect(block, 0, 1) == 1) //블록 바로 밑에 보드가 있다면
 				{
 					last_line = 1;
-					Board_Conginition(block, 0, 0);//보드 벽돌 배열 1추가
+					Board_Conginition(block, 0, 0);
 					Check_line();
 					break;
 				}
-				Remove_block(block, 0, 1);  //board배열 +1행 
+				Remove_block(block, 0, 1);
 			}
-			/*detect함수에서 배열값 1발견시 중지*/
+
 			if (last_line == 1)
 			{
 				break;
 			}
 
 			key = _getch();
-			/*방향키*/
-			switch (key)
+			switch (key) //방향 키에 맞게 블록 이동
 			{
 			case LEFT:
 				Remove_block(block, -2, 0);
@@ -606,12 +605,10 @@ void Run(void)
 				Show_block(block);
 				break;
 			case UP:
-				// 첫수를구한다.
-				block_rotation = block / 4;
+				block_rotation = block / 4; //기본 모양 블록을 구함
 				block_rotation *= 4;
 
-				// 다음수가 끝수이하인가?
-				if ((block + 1) <= (block_rotation + 3))
+				if ((block + 1) <= (block_rotation + 3)) //회전한 모양 블록을 구함
 				{
 					block_rotation = block + 1;
 				}
@@ -633,7 +630,7 @@ void Run(void)
 				while (1)
 				{
 					Remove_block(block, 0, 1);
-					if (Detect(block, 0, 1) == 1)
+					if (Detect(block, 0, 1) == 1) //블록 바로 밑에 보드가 있다면
 					{
 						Show_block(block);
 						Board_Conginition(block, 0, 0);
