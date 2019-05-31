@@ -1,6 +1,6 @@
 #include "block.h"
 #include "cursor.h"
-#include "scorelevel.h"
+#include "print.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -437,6 +437,7 @@ int main()
 	Remove_cursor();
 	Show_board();
 	Print_scorelevel();
+	Print_explain();
 	Run();
 	getchar();
 }
